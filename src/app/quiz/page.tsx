@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Image from "next/image";
 import QuizOption from "../../components/QuizOption";
@@ -10,7 +11,7 @@ import Quiz3 from "../../../public/resources/quizhellir.svg";
 import Quiz4 from "../../../public/resources/djakninn.svg";
 import Quiz5 from "../../../public/resources/quizalfarsvg.svg";
 
-export const QuizPage = () => {
+const QuizPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
