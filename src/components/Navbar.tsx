@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
       <nav className="w-full bg-sagnir-100 fixed bottom-0 border-t border-s-sagnir-200">
         <ul className="flex justify-around items-center py-4">
           <li onClick={() => setActive("StoriesPage")}>
-            <Link href="/stories" passHref>
+            <Link href="/" passHref>
               <Image
                 src={active === "StoriesPage" ? StoriesIconActive : StoriesIcon}
                 alt="StoriesPage"

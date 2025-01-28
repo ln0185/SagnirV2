@@ -1,5 +1,6 @@
 import NavBar from "../components/Navbar";
 import Link from "next/link";
+import "./globals.css";
 import { ReactNode } from "react";
 
 const Layout = ({ children }: { children: ReactNode }) => {
@@ -15,12 +16,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <div className="h-full relative">
           <NavBar />
           <div>
-            <Link href="/">Home</Link>
-            <Link href="/stories">Stories</Link>
-            <Link href="/map">Map</Link>
-            <Link href="/quiz">Quiz</Link>
+            <Link href="/"></Link>
+            <Link href="/map"></Link>
+            <Link href="/quiz"></Link>
           </div>
-          <main>{children}</main> {/* This renders your page content */}
+          <main>{children}</main>
         </div>
       </body>
     </html>

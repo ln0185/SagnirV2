@@ -1,1 +1,19 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "PPFragment-GlareRegular";
+  src: url("/fonts/PPFragment-GlareRegular.woff2") format("woff2"),
+    url("/fonts/PPFragment-GlareRegular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PPFragment-SerifExtrabold";
+  src: url("/fonts/PPFragment-SerifExtrabold.woff2") format("woff2"),
+    url("/fonts/PPFragment-SerifExtrabold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
