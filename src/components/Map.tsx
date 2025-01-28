@@ -22,7 +22,7 @@ const geolocationIcon = L.icon({
 const markers = [
   {
     id: 1,
-    position: [63.3177774, -20.4972221],
+    position: [63.3177774, -20.4972221] as [number, number],
     title: "Geirfuglasker",
     category: "Huldufólk",
     description:
@@ -30,7 +30,7 @@ const markers = [
   },
   {
     id: 2,
-    position: [65.1841666, -13.759167],
+    position: [65.1841666, -13.759167] as [number, number],
     title: "Loðmundarfjörður",
     category: "Huldufólk",
     description:
@@ -38,7 +38,7 @@ const markers = [
   },
   {
     id: 3,
-    position: [65.6695917, -22.607964],
+    position: [65.6695917, -22.607964] as [number, number],
     title: "Melstaðarkirkja",
     category: "Huldufólk",
     description:
@@ -46,7 +46,7 @@ const markers = [
   },
   {
     id: 4,
-    position: [64.08799549, -16.98293665],
+    position: [64.08799549, -16.98293665] as [number, number],
     title: "Skaftafell",
     category: "Tröll",
     description:
@@ -54,7 +54,7 @@ const markers = [
   },
   {
     id: 5,
-    position: [64.1540458, -21.2815924],
+    position: [64.1540458, -21.2815924] as [number, number],
     title: "Jórukleif",
     category: "Tröll",
     description:
@@ -62,7 +62,7 @@ const markers = [
   },
   {
     id: 6,
-    position: [63.7153782, -19.8436617],
+    position: [63.7153782, -19.8436617] as [number, number],
     title: "Eyvindarmúli",
     category: "Tröll",
     description:
@@ -70,7 +70,7 @@ const markers = [
   },
   {
     id: 7,
-    position: [65.110218, -13.8434718],
+    position: [65.110218, -13.8434718] as [number, number],
     title: "Rafnkelsstaðir",
     category: "Draugar",
     description:
@@ -78,7 +78,7 @@ const markers = [
   },
   {
     id: 8,
-    position: [65.0625528, -15.1571429],
+    position: [65.0625528, -15.1571429] as [number, number],
     title: "Snjóholt",
     category: "Draugar",
     description:
@@ -86,7 +86,7 @@ const markers = [
   },
   {
     id: 9,
-    position: [64.5194429, -21.9365519],
+    position: [64.5194429, -21.9365519] as [number, number],
     title: "Reynisstaðarkirkja",
     category: "Draugar",
     description:
@@ -94,7 +94,7 @@ const markers = [
   },
   {
     id: 10,
-    position: [65.6579815, -20.2929826],
+    position: [65.6579815, -20.2929826] as [number, number],
     title: "Húnavatnssýsla",
     category: "Helgisögur",
     description:
@@ -102,7 +102,7 @@ const markers = [
   },
   {
     id: 11,
-    position: [64.1384228, -20.2621234],
+    position: [64.1384228, -20.2621234] as [number, number],
     title: "Hruni",
     category: "Helgisögur",
     description:
