@@ -39,7 +39,7 @@ export const Searchbar: React.FC<SearchbarProps> = ({
 
   useEffect(() => {
     const getSearchedStories = async () => {
-      const res = await fetch(`http://localhost:8080/all`);
+      const res = await fetch(`/api/all`);
       const data = await res.json();
 
       const allStories = data?.flatMap((item: StoryInterface) => {

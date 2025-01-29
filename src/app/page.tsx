@@ -30,7 +30,7 @@ const StoriesPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8080/all")
+    fetch("/api/all")
       .then((res) => res.json())
       .then((data) => {
         setAllStories(data);
@@ -76,3 +76,4 @@ const StoriesPage = () => {
 };
 
 export default StoriesPage;
+

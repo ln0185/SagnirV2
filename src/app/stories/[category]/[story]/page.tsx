@@ -1,39 +1,39 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { notFound } from "next/navigation";
-
-type PageProps = {
-  params: {
-    category: string;
-    story: string;
-  };
-};
+import { useParams } from "next/navigation";
 
 type Story = {
   title: string;
   content: string;
 } | null;
 
-export default function SingleStoryPage({ params }: PageProps) {
+export default function SingleStoryPage() {
+  const params = useParams();
   const [story, setStory] = useState<Story>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getStory() {
+      if (!params?.category || !params?.story) return;
+
       const res = await fetch(
         `/api/stories/${params.category}/${params.story}`
       );
+
       if (!res.ok) {
         setStory(null);
         return;
       }
+
       const data = await res.json();
       setStory(data);
       setLoading(false);
     }
 
     getStory();
-  }, [params.category, params.story]);
+  }, [params]);
 
   if (loading) {
     return <div>Loading...</div>;
