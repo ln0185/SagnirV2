@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import photo1 from "../../public/resources/huldufolk 1.png";
 import photo2 from "../../public/resources/huldu1 1.png";

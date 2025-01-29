@@ -9,8 +9,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Your description here" />
-        <title>My App</title>
+        <meta name="description" content="An app about Icelandic Folklore" />
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="/src/assets/resources/Logo.svg"
+        />
+        <title>Sagnir</title>
       </head>
       <body>
         <div className="h-full relative">
