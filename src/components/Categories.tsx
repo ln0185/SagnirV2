@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 type CategoriesType = {
@@ -17,7 +19,7 @@ export const Categories = ({ data, setClickedCategory }: CategoriesType) => {
     if (formattedCategory === "Álfar og huldufólk") formattedCategory = "alfa";
     if (formattedCategory === "Helgisögur") formattedCategory = "efra";
 
-    console.log("Category test", formattedCategory);
+    console.log(data, "Category test", formattedCategory);
 
     setActiveCategory(clickedCategory);
     setClickedCategory(formattedCategory);
@@ -25,7 +27,10 @@ export const Categories = ({ data, setClickedCategory }: CategoriesType) => {
 
   return (
     <div className="flex flex-row bg-sagnir-100 text-sagnir-200 text-lg">
-      <ul className="flex flex-row gap-10 justify-between overflow-x-scroll md:w-full md:text-2xl py-4 px-4">
+      <ul
+        key={data[0]}
+        className="flex flex-row gap-10 justify-between overflow-x-scroll md:w-full md:text-2xl py-4 px-4"
+      >
         {data.length > 0 ? (
           <li
             onClick={(e) => handleCategory((e.target as HTMLElement).innerText)}

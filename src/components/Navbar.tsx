@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
         isSearchOpen={isSearchOpen}
         setIsSearchOpen={setIsSearchOpen}
       />
-      <nav className="w-full bg-sagnir-100 fixed bottom-0 border-t border-s-sagnir-200">
+      <nav className="w-full bg-sagnir-100 fixed bottom-0 z-50 border-b border-s-sagnir-200">
         <ul className="flex justify-around items-center py-4">
           <li onClick={() => setActive("StoriesPage")}>
             <Link href="/" passHref>

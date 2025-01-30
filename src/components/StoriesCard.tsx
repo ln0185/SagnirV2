@@ -1,6 +1,8 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import photo1 from "../../public/resources/huldufolk 1.png";
 import photo2 from "../../public/resources/huldu1 1.png";
 import photo3 from "../../public/resources/MYND4.png";
@@ -28,7 +30,7 @@ export const StoriesCard = ({ data, categoryName }: StoriesCardType) => {
   const [, setIsAllStories] = useState<boolean>(false);
   const router = useRouter();
 
-  const categoryPhotos: Record<string, string[]> = {
+  const categoryPhotos: Record<string, StaticImageData[]> = {
     default: [
       photo1,
       photo2,
@@ -43,10 +45,10 @@ export const StoriesCard = ({ data, categoryName }: StoriesCardType) => {
       photo2,
       photo11,
     ],
-    troll: ["photo4", "photo6", "photo5"],
-    draug: ["photo7", "photo3", "photo11"],
-    alfa: ["photo1", "photo9", "photo8"],
-    efra: ["photo2", "photo3", "photo10"],
+    troll: [photo4, photo6, photo5],
+    draug: [photo7, photo3, photo11],
+    alfa: [photo1, photo9, photo8],
+    efra: [photo2, photo3, photo10],
   };
 
   const selectedPhotos =
@@ -134,18 +136,20 @@ export const StoriesCard = ({ data, categoryName }: StoriesCardType) => {
         .slice(0, categoryName === "all" ? 12 : 3)
         .map((story, index) => {
           const title = story?.replace(/[/]/g, "") || "Untitled";
-          const photo = selectedPhotos[index] || "default-photo-path.svg";
+          const photo = selectedPhotos[index] || photo1;
 
           return (
             <figure key={index} className="flex flex-col items-center w-full">
               <header className="relative w-full">
                 <Image
+                  width={2000}
+                  height={2000}
                   src={photo}
                   alt={`Story ${title}`}
                   className="w-full h-auto rounded-lg"
                 />
                 <h2
-                  className="absolute bottom-2 left-2 text-sagnir-200 font-serifExtra text-2xl md:text-5xl px-2 py-1 rounded-md cursor-pointer"
+                  className="absolute bottom-2 left-2 text-sagnir-200 font-serifExtra text-2xl md:text-4xl xl:text-5xl px-2 py-1 rounded-md cursor-pointer"
                   onClick={() =>
                     handleStoryClick(story, categoryName as string)
                   }
