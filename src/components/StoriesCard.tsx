@@ -15,6 +15,15 @@ import photo9 from "../../public/resources/hidden people 2.svg";
 import photo10 from "../../public/resources/MYND5.png";
 import photo11 from "../../public/resources/gillitrut.png";
 
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+};
+
 type StoriesCardType = {
   data:
     | {
@@ -23,10 +32,16 @@ type StoriesCardType = {
       }
     | { stories: { stories: Record<string, string> } }[];
   categoryName: string;
+  visibleStories: number;
 };
 
-export const StoriesCard = ({ data, categoryName }: StoriesCardType) => {
+export const StoriesCard = ({
+  data,
+  categoryName,
+  visibleStories,
+}: StoriesCardType) => {
   const [categoryStories, setCategoryStories] = useState<string[]>([]);
+  const [shuffledPhotos, setShuffledPhotos] = useState<StaticImageData[]>([]);
   const router = useRouter();
 
   const categoryPhotos: Record<string, StaticImageData[]> = {
@@ -53,6 +68,10 @@ export const StoriesCard = ({ data, categoryName }: StoriesCardType) => {
   const selectedPhotos =
     categoryPhotos[categoryName.toLowerCase()] || categoryPhotos.default;
 
+  useEffect(() => {
+    setShuffledPhotos(shuffleArray(selectedPhotos));
+  }, [categoryName, visibleStories]);
+
   const storyNavigations: Record<string, string> = {
     "Álfadrottning í álögum": "alfa-dr",
     "Álfafólkið í Loðmundarfirði": "a-lodmfj",
@@ -69,16 +88,7 @@ export const StoriesCard = ({ data, categoryName }: StoriesCardType) => {
   };
 
   useEffect(() => {
-    if (categoryName === "alfa" && data) {
-      const alfaStories = Object.keys(storyNavigations).filter((story) =>
-        [
-          "Álfadrottning í álögum",
-          "Álfafólkið í Loðmundarfirði",
-          "Álfakóngurinn í Seley",
-        ].includes(story)
-      );
-      setCategoryStories(alfaStories);
-    } else if (categoryName === "all" && data) {
+    if (categoryName === "all" && data) {
       const allStories = Array.isArray(data)
         ? data.flatMap((item) => Object.values(item?.stories.stories).flat())
         : Object.values(data?.stories || {});
@@ -113,32 +123,30 @@ export const StoriesCard = ({ data, categoryName }: StoriesCardType) => {
 
   return (
     <div className="bg-sagnir-100 flex flex-wrap flex-col justify-center w-full gap-4">
-      {categoryStories
-        .slice(0, categoryName === "all" ? 12 : 3)
-        .map((story, index) => {
-          const title = story?.replace(/[/]/g, "") || "Untitled";
-          const photo = selectedPhotos[index] || photo1;
+      {categoryStories.slice(0, visibleStories).map((story, index) => {
+        const title = story?.replace(/[/]/g, "") || "Untitled";
+        const photo = shuffledPhotos[index % shuffledPhotos.length] || photo1;
 
-          return (
-            <figure key={index} className="flex flex-col items-center w-full">
-              <header className="relative w-full">
-                <Image
-                  width={2000}
-                  height={2000}
-                  src={photo}
-                  alt={`Story ${title}`}
-                  className="w-full h-auto rounded-lg"
-                />
-                <h2
-                  className="absolute bottom-2 left-2 text-sagnir-200 font-serifExtra text-2xl md:text-4xl xl:text-5xl px-2 py-1 rounded-md cursor-pointer"
-                  onClick={() => handleStoryClick(story, categoryName)}
-                >
-                  {title}
-                </h2>
-              </header>
-            </figure>
-          );
-        })}
+        return (
+          <figure key={index} className="flex flex-col items-center w-full">
+            <header className="relative w-full">
+              <Image
+                width={2000}
+                height={2000}
+                src={photo}
+                alt={`Story ${title}`}
+                className="w-full h-auto rounded-lg"
+              />
+              <h2
+                className="absolute bottom-2 left-2 text-sagnir-200 font-serifExtra text-2xl md:text-4xl xl:text-5xl px-2 py-1 rounded-md cursor-pointer"
+                onClick={() => handleStoryClick(story, categoryName)}
+              >
+                {title}
+              </h2>
+            </header>
+          </figure>
+        );
+      })}
     </div>
   );
 };

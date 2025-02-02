@@ -1,4 +1,4 @@
-"use client";
+"use client"; // Add this line at the very top
 
 import React, { useState, useEffect } from "react";
 import { StoriesHeader } from "../components/StoriesHeader";
@@ -27,6 +27,7 @@ export default function StoriesPage() {
     []
   );
   const [clickedCategory, setClickedCategory] = useState<string>("all");
+  const [visibleStories, setVisibleStories] = useState<number>(3); // Initial number of visible stories
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,7 +63,7 @@ export default function StoriesPage() {
   console.log("Selected Category Data:", selectedCategory);
 
   const selectedStories =
-    selectedCategory && clickedCategory !== "all"
+    selectedCategory && "stories" in selectedCategory
       ? selectedCategory.stories
       : allStories.flatMap((category) => category.stories);
 
@@ -76,19 +77,28 @@ export default function StoriesPage() {
         .reduce((acc, [key, value]) => {
           acc[key] = value;
           return acc;
-        }, {});
+        }, {} as Record<string, string>);
     } else if (typeof selectedStories === "object") {
       formattedStories = Object.entries(selectedStories.stories).reduce(
         (acc, [key, value]) => {
           acc[key] = value;
           return acc;
         },
-        {}
+        {} as Record<string, string>
       );
     }
   }
 
-  console.log("Formatted Stories:", formattedStories);
+  const loadMoreStories = () => {
+    setVisibleStories((prevVisibleStories) => prevVisibleStories + 3); // Increase the visible stories by 3
+  };
+
+  const displayedStories = Object.keys(formattedStories)
+    .slice(0, visibleStories)
+    .reduce((acc, key) => {
+      acc[key] = formattedStories[key];
+      return acc;
+    }, {} as Record<string, string>);
 
   return (
     <div className="z-10 bg-sagnir-100 pb-8">
@@ -102,11 +112,22 @@ export default function StoriesPage() {
         </div>
       )}
       <div className="pt-2 pb-9 overflow-hidden">
-        {Object.keys(formattedStories).length > 0 ? (
-          <StoriesCard
-            data={{ category: clickedCategory, stories: formattedStories }}
-            categoryName={clickedCategory}
-          />
+        {Object.keys(displayedStories).length > 0 ? (
+          <>
+            <StoriesCard
+              data={{ category: clickedCategory, stories: displayedStories }}
+              categoryName={clickedCategory}
+            />
+            {Object.keys(displayedStories).length <
+              Object.keys(formattedStories).length && (
+              <button
+                onClick={loadMoreStories}
+                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+              >
+                Load More
+              </button>
+            )}
+          </>
         ) : (
           <p className="text-sagnir-200">Loading...</p>
         )}
