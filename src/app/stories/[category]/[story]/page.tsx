@@ -1,55 +1,93 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { notFound } from "next/navigation";
-import { useParams } from "next/navigation";
+import React, { useState, useEffect, use } from "react";
+import ArrowLeft from "../../../../components/ArrowLeft";
+import Image from "next/image";
 
-type Story = {
-  title: string;
-  content: string;
-} | null;
+const SingleStoryPage = ({
+  params,
+}: {
+  params: Promise<{ category: string; story: string }>;
+}) => {
+  const resolvedParams = use(params);
+  const { category, story } = resolvedParams || {};
 
-export default function SingleStoryPage() {
-  const params = useParams();
-  const [story, setStory] = useState<Story>(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function getStory() {
-      if (!params?.category || !params?.story) return;
-
-      const res = await fetch(
-        `/api/stories/${params.category}/${params.story}`
-      );
-
-      if (!res.ok) {
-        setStory(null);
-        return;
-      }
-
-      const data = await res.json();
-      setStory(data);
-      setLoading(false);
+    if (!category || !story) {
+      setError("Missing category or story parameters");
+      setIsLoading(false);
+      return;
     }
 
-    getStory();
-  }, [params]);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/${category}/${story}`);
+        if (!response.ok) throw new Error("Story not found");
+        const result = await response.json();
+        setData(result);
+        setIsLoading(false);
+      } catch (err) {
+        setError("Error loading story.");
+        setIsLoading(false);
+      }
+    };
 
-  if (loading) {
+    fetchData();
+  }, [category, story]);
+
+  const goback = () => {
+    window.history.back();
+  };
+
+  const breakTextIntoParagraphs = (text: string) => {
+    const sentences = text.split(/(?<=\.|\?|!)(\s)/);
+    const paragraphs = [];
+
+    for (let i = 0; i < sentences.length; i += 4) {
+      paragraphs.push(sentences.slice(i, i + 4).join(""));
+    }
+
+    return paragraphs;
+  };
+
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (!story) {
-    notFound();
-    return null;
+  if (error) {
+    return <div>{error}</div>;
   }
 
   return (
-    <div className="min-h-screen p-4">
-      <section>
-        <h1>{story.title}</h1>
-        <div>{story.content}</div>
-      </section>
+    <div className="bg-sagnir-100">
+      <ArrowLeft onClick={goback} />
+      <div className="flex-col flex items-center mb-12">
+        <Image
+          src="/resources/huldufolk 1.png"
+          alt="Huldufolk"
+          width={500}
+          height={500}
+          className="w-full h-full md:h-2/3 md:w-full"
+        />
+        <h2 className="font-glare text-center text-sagnir-200 p-5 text-4xl md:p-6 md:text-6xl">
+          {data?.title}
+        </h2>
+        <hr className="h-0.010 w-full bg-sagnir-200" />
+        <div className="font-glare text-[16px] text-sagnir-200 tracking-wide p-8 pt-5 leading-relaxed md:p-12">
+          {data?.body &&
+            breakTextIntoParagraphs(data.body).map((paragraph, index) => (
+              <p key={index} className="mb-4">
+                {paragraph.trim()}
+              </p>
+            ))}
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default SingleStoryPage;

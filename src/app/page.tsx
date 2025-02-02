@@ -1,4 +1,4 @@
-"use client"; // Add this line at the very top
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { StoriesHeader } from "../components/StoriesHeader";
@@ -27,7 +27,7 @@ export default function StoriesPage() {
     []
   );
   const [clickedCategory, setClickedCategory] = useState<string>("all");
-  const [visibleStories, setVisibleStories] = useState<number>(3); // Initial number of visible stories
+  const [visibleStories, setVisibleStories] = useState<number>(3);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,7 +90,7 @@ export default function StoriesPage() {
   }
 
   const loadMoreStories = () => {
-    setVisibleStories((prevVisibleStories) => prevVisibleStories + 3); // Increase the visible stories by 3
+    setVisibleStories((prevVisibleStories) => prevVisibleStories + 3);
   };
 
   const displayedStories = Object.keys(formattedStories)

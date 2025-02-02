@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 
 export default async function handler(req, res) {
-  const { category } = req.query; // The category is captured from the dynamic route
+  const { category } = req.query; 
 
   try {
     const response = await fetch(

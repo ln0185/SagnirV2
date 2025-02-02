@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import arrowImg from "/src/assets/resources/arrow left dm.svg";
+import arrowImg from "../../public/resources/arrow left dm.svg";
 
 interface ArrowLeftProps {
   onClick: () => void;
