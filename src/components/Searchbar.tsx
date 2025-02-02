@@ -19,61 +19,37 @@ export const Searchbar: React.FC<SearchbarProps> = ({
   setIsSearchOpen,
 }) => {
   const [searchedStory, setSearchedStory] = useState<string>("");
-  const [searchedStories, setSearchedStories] = useState<string[]>([]);
+  const [allStories, setAllStories] = useState<string[]>([]);
   const [searchResult, setSearchResult] = useState<string[]>([]);
-
-  const searchStories = [
-    "Álfadrottning í álögum",
-    "Álfafólkið í Loðmundarfirði",
-    "Álfakóngurinn í Seley",
-    "Ábæjar-Skotta",
-    "Átján draugar úr Blöndu",
-    "Átján sendingar í senn",
-    "Átján Skólabræður",
-    "Andrarímur og Hallgrímsrímur",
-    "Bergþór Bláfellingur",
-    "Bakkastaður",
-    "Brytinn í Skálholti",
-    "Dansinn í Hruna",
-  ];
 
   useEffect(() => {
     const getSearchedStories = async () => {
       const res = await fetch(`/api/all`);
       const data = await res.json();
 
-      const allStories = data?.flatMap((item: StoryInterface) => {
+      const allFetchedStories = data?.flatMap((item: StoryInterface) => {
         const combinedStories = Object.values(item.stories.stories);
-        return combinedStories.map((story) => story);
+        return combinedStories;
       });
 
-      const filteredStories = allStories.filter((story: string) =>
-        searchStories.includes(story)
-      );
-
-      setSearchedStories(filteredStories);
+      setAllStories(allFetchedStories || []);
     };
 
     getSearchedStories();
   }, []);
 
   useEffect(() => {
-    if (!searchedStories.length) {
-      setSearchResult([]);
-      return;
-    }
-
     if (searchedStory.trim() === "") {
       setSearchResult([]);
       return;
     }
 
-    const filteredStories = searchedStories.filter((word: string) =>
-      word.toLowerCase().includes(searchedStory.toLowerCase())
+    const filteredStories = allStories.filter((story: string) =>
+      story.toLowerCase().includes(searchedStory.toLowerCase())
     );
 
     setSearchResult(filteredStories);
-  }, [searchedStories, searchedStory]);
+  }, [searchedStory, allStories]);
 
   return (
     <div
@@ -113,7 +89,9 @@ export const Searchbar: React.FC<SearchbarProps> = ({
             data={{ category: "", stories: searchResult }}
             categoryName={"all"}
           />
-        ) : null}
+        ) : (
+          <p>No results found</p>
+        )}
       </div>
     </div>
   );
