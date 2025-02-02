@@ -37,8 +37,8 @@ export default function StoriesPage() {
           return;
         }
         const data: StoriesCategoryArrayInterface[] = await res.json();
-        console.log("Fetched API data:", data);
         setAllStories(data);
+        console.log("Fetched API data:", data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -49,8 +49,7 @@ export default function StoriesPage() {
 
   const categoryNames =
     allStories?.map(
-      (category: StoriesCategoryArrayInterface) =>
-        categoryDisplayNames[category.category] || category.category
+      (category) => categoryDisplayNames[category.category] || category.category
     ) || [];
 
   const selectedCategory =
@@ -59,10 +58,7 @@ export default function StoriesPage() {
       : allStories.find((item) => item.category === clickedCategory);
 
   console.log("Clicked Category:", clickedCategory);
-  console.log(
-    "All Categories:",
-    allStories.map((item) => item.category)
-  );
+  console.log("All Categories:", allStories);
   console.log("Selected Category Data:", selectedCategory);
 
   const selectedStories =
@@ -70,38 +66,45 @@ export default function StoriesPage() {
       ? selectedCategory.stories
       : allStories.flatMap((category) => category.stories);
 
-  console.log("Selected Stories:", selectedStories);
+  let formattedStories: Record<string, string> = {};
 
-  const formattedStories = Array.isArray(selectedStories)
-    ? selectedStories
+  if (selectedStories) {
+    if (Array.isArray(selectedStories)) {
+      formattedStories = selectedStories
         .map((story) => Object.entries(story.stories))
         .flat()
         .reduce((acc, [key, value]) => {
           acc[key] = value;
           return acc;
-        }, {} as Record<string, string>)
-    : {};
+        }, {});
+    } else if (typeof selectedStories === "object") {
+      formattedStories = Object.entries(selectedStories.stories).reduce(
+        (acc, [key, value]) => {
+          acc[key] = value;
+          return acc;
+        },
+        {}
+      );
+    }
+  }
 
   console.log("Formatted Stories:", formattedStories);
 
   return (
     <div className="z-10 bg-sagnir-100 pb-8">
       <StoriesHeader />
-      {categoryNames.length > 0 ? (
+      {categoryNames.length > 0 && (
         <div className="sticky top-[190px] z-30 bg-sagnir-100">
           <Categories
             data={categoryNames}
             setClickedCategory={setClickedCategory}
           />
         </div>
-      ) : null}
+      )}
       <div className="pt-2 pb-9 overflow-hidden">
         {Object.keys(formattedStories).length > 0 ? (
           <StoriesCard
-            data={{
-              category: clickedCategory,
-              stories: formattedStories,
-            }}
+            data={{ category: clickedCategory, stories: formattedStories }}
             categoryName={clickedCategory}
           />
         ) : (

@@ -27,7 +27,6 @@ type StoriesCardType = {
 
 export const StoriesCard = ({ data, categoryName }: StoriesCardType) => {
   const [categoryStories, setCategoryStories] = useState<string[]>([]);
-  const [, setIsAllStories] = useState<boolean>(false);
   const router = useRouter();
 
   const categoryPhotos: Record<string, StaticImageData[]> = {
@@ -52,9 +51,7 @@ export const StoriesCard = ({ data, categoryName }: StoriesCardType) => {
   };
 
   const selectedPhotos =
-    typeof categoryName === "string"
-      ? categoryPhotos[categoryName.toLowerCase()] || categoryPhotos.default
-      : categoryPhotos.default;
+    categoryPhotos[categoryName.toLowerCase()] || categoryPhotos.default;
 
   const storyNavigations: Record<string, string> = {
     "Álfadrottning í álögum": "alfa-dr",
@@ -85,11 +82,9 @@ export const StoriesCard = ({ data, categoryName }: StoriesCardType) => {
       const allStories = Array.isArray(data)
         ? data.flatMap((item) => Object.values(item?.stories.stories).flat())
         : Object.values(data?.stories || {});
-      setIsAllStories(true);
       setCategoryStories(allStories);
     } else if (!Array.isArray(data) && data.category !== "all") {
       const catStories = Object.values(data?.stories || {});
-      setIsAllStories(false);
       setCategoryStories(catStories);
     }
   }, [data, categoryName]);
@@ -103,25 +98,11 @@ export const StoriesCard = ({ data, categoryName }: StoriesCardType) => {
       Helgisögur: "ur-efra-og-nedra-helgisogur",
     };
 
-    const storyNavigations: Record<string, string> = {
-      "Álfadrottning í álögum": "alfa-dr",
-      "Álfafólkið í Loðmundarfirði": "a-lodmfj",
-      "Álfakóngurinn í Seley": "seley",
-      "Ábæjar-Skotta": "skotta3",
-      "Átján draugar úr Blöndu": "18draug",
-      "Átján sendingar í senn": "18send",
-      "Átján Skólabræður": "18skolab",
-      "Andrarímur og Hallgrímsrímur": "andra",
-      "Bergþór Bláfellingur": "blafell",
-      Bakkastaður: "bakka",
-      "Brytinn í Skálholti": "brytinn",
-      "Dansinn í Hruna": "hruna",
-    };
-
-    const storyCategory = categoryNavigations[category] || category;
     const storySlug = storyNavigations[story] || story;
 
-    router.push(`/stories/${storyCategory}/${storySlug}`);
+    router.push(
+      `/stories/${categoryNavigations[category] || category}/${storySlug}`
+    );
   };
 
   if (!categoryStories || categoryStories.length === 0) {
@@ -150,9 +131,7 @@ export const StoriesCard = ({ data, categoryName }: StoriesCardType) => {
                 />
                 <h2
                   className="absolute bottom-2 left-2 text-sagnir-200 font-serifExtra text-2xl md:text-4xl xl:text-5xl px-2 py-1 rounded-md cursor-pointer"
-                  onClick={() =>
-                    handleStoryClick(story, categoryName as string)
-                  }
+                  onClick={() => handleStoryClick(story, categoryName)}
                 >
                   {title}
                 </h2>

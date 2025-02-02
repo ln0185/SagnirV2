@@ -1,9 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import fetch from "node-fetch";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req, res) {
   try {
     const response = await fetch("https://thjodsogur-api.deno.dev/api/");
     const data = await response.json();
