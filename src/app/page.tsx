@@ -122,7 +122,7 @@ export default function StoriesPage() {
               Object.keys(formattedStories).length && (
               <button
                 onClick={loadMoreStories}
-                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+                className="m-4 px-4 py-2 bg-sagnir-100 font-glare text-sagnir-200 text-md lg:text-xl rounded border border-sagnir-200 hover:bg-sagnir-200 hover:text-sagnir-100"
               >
                 Load More
               </button>
