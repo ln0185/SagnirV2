@@ -35,13 +35,6 @@ type StoriesCardType = {
   visibleStories: number;
 };
 
-const categoryPhotos: Record<string, StaticImageData[]> = {
-  troll: [photo1, photo2, photo3, photo4, photo5, photo6],
-  draugar: [photo7, photo8, photo9, photo10, photo11],
-  alfa: [photo1, photo2, photo3, photo4, photo5, photo6],
-  default: [photo1, photo2, photo3, photo4, photo5, photo6],
-};
-
 export const StoriesCard = ({
   data,
   categoryName,
@@ -49,18 +42,36 @@ export const StoriesCard = ({
 }: StoriesCardType) => {
   const [categoryStories, setCategoryStories] = useState<string[]>([]);
   const [shuffledPhotos, setShuffledPhotos] = useState<StaticImageData[]>([]);
-  const [selectedPhotos, setSelectedPhotos] = useState<StaticImageData[]>([]);
   const router = useRouter();
 
-  useEffect(() => {
-    const photos =
-      categoryPhotos[categoryName.toLowerCase()] || categoryPhotos.default;
-    setSelectedPhotos(photos);
-  }, [categoryName]);
+  const categoryPhotos: Record<string, StaticImageData[]> = {
+    troll: [photo1, photo2, photo3, photo4, photo5, photo6],
+    draugar: [photo7, photo8, photo9, photo10, photo11],
+    alfa: [photo1, photo2, photo3, photo4, photo5, photo6],
+    default: [photo1, photo2, photo3, photo4, photo5, photo6],
+  };
+
+  const selectedPhotos =
+    categoryPhotos[categoryName.toLowerCase()] || categoryPhotos.default;
 
   useEffect(() => {
     setShuffledPhotos(shuffleArray(selectedPhotos));
-  }, [selectedPhotos, visibleStories]);
+  }, [categoryName, visibleStories]);
+
+  const storyNavigations: Record<string, string> = {
+    "Álfadrottning í álögum": "alfa-dr",
+    "Álfafólkið í Loðmundarfirði": "a-lodmfj",
+    "Álfakóngurinn í Seley": "seley",
+    "Ábæjar-Skotta": "skotta3",
+    "Átján draugar úr Blöndu": "18draug",
+    "Átján sendingar í senn": "18send",
+    "Átján Skólabræður": "18skolab",
+    "Andrarímur og Hallgrímsrímur": "andra",
+    "Bergþór Bláfellingur": "blafell",
+    Bakkastaður: "bakka",
+    "Brytinn í Skálholti": "brytinn",
+    "Dansinn í Hruna": "hruna",
+  };
 
   useEffect(() => {
     if (categoryName === "all" && data) {
@@ -83,7 +94,7 @@ export const StoriesCard = ({
       Helgisögur: "ur-efra-og-nedra-helgisogur",
     };
 
-    const storySlug = categoryNavigations[story] || story;
+    const storySlug = storyNavigations[story] || story;
 
     router.push(
       `/stories/${categoryNavigations[category] || category}/${storySlug}`

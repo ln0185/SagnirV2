@@ -16,10 +16,10 @@ interface StoriesCategoryArrayInterface {
 }
 
 const categoryDisplayNames: { [key: string]: string } = {
-  troll: "Tr\u00f6ll",
+  troll: "Tröll",
   draug: "Draugar",
-  alfa: "\u00c1lfar og hulduf\u00f3lk",
-  efra: "Helgis\u00f6gur",
+  alfa: "Álfar og huldufólk",
+  efra: "Helgisögur",
 };
 
 export default function StoriesPage() {
