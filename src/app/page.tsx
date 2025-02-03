@@ -16,10 +16,10 @@ interface StoriesCategoryArrayInterface {
 }
 
 const categoryDisplayNames: { [key: string]: string } = {
-  troll: "Tröll",
+  troll: "Tr\u00f6ll",
   draug: "Draugar",
-  alfa: "Álfar og huldufólk",
-  efra: "Helgisögur",
+  alfa: "\u00c1lfar og hulduf\u00f3lk",
+  efra: "Helgis\u00f6gur",
 };
 
 export default function StoriesPage() {
@@ -34,15 +34,11 @@ export default function StoriesPage() {
       try {
         const res = await fetch("http://localhost:3000/api/all");
         if (!res.ok) {
-          console.error("Failed to fetch data:", res.statusText);
           return;
         }
         const data: StoriesCategoryArrayInterface[] = await res.json();
         setAllStories(data);
-        console.log("Fetched API data:", data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      } catch (error) {}
     };
 
     fetchData();
@@ -57,10 +53,6 @@ export default function StoriesPage() {
     clickedCategory === "all"
       ? allStories
       : allStories.find((item) => item.category === clickedCategory);
-
-  console.log("Clicked Category:", clickedCategory);
-  console.log("All Categories:", allStories);
-  console.log("Selected Category Data:", selectedCategory);
 
   const selectedStories =
     selectedCategory && "stories" in selectedCategory
@@ -120,12 +112,14 @@ export default function StoriesPage() {
             />
             {Object.keys(displayedStories).length <
               Object.keys(formattedStories).length && (
-              <button
-                onClick={loadMoreStories}
-                className="m-4 px-4 py-2 bg-sagnir-100 font-glare text-sagnir-200 text-md lg:text-xl rounded border border-sagnir-200 hover:bg-sagnir-200 hover:text-sagnir-100"
-              >
-                Load More
-              </button>
+              <div className="flex justify-center mt-4">
+                <button
+                  onClick={loadMoreStories}
+                  className="px-4 py-2 bg-sagnir-100 font-glare text-sagnir-200 text-md lg:text-md rounded border border-sagnir-200"
+                >
+                  Load More
+                </button>
+              </div>
             )}
           </>
         ) : (
