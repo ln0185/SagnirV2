@@ -45,24 +45,10 @@ export const StoriesCard = ({
   const router = useRouter();
 
   const categoryPhotos: Record<string, StaticImageData[]> = {
-    default: [
-      photo1,
-      photo2,
-      photo3,
-      photo4,
-      photo5,
-      photo6,
-      photo7,
-      photo8,
-      photo9,
-      photo10,
-      photo2,
-      photo11,
-    ],
-    troll: [photo4, photo6, photo5],
-    draug: [photo7, photo3, photo11],
-    alfa: [photo1, photo9, photo8],
-    efra: [photo2, photo3, photo10],
+    troll: [photo1, photo2, photo3, photo4, photo5, photo6],
+    draugar: [photo7, photo8, photo9, photo10, photo11],
+    alfa: [photo1, photo2, photo3, photo4, photo5, photo6],
+    default: [photo1, photo2, photo3, photo4, photo5, photo6],
   };
 
   const selectedPhotos =
