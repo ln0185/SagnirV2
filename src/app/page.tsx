@@ -16,10 +16,10 @@ interface StoriesCategoryArrayInterface {
 }
 
 const categoryDisplayNames: { [key: string]: string } = {
-  troll: "Tröll",
+  troll: "Tr\u00f6ll",
   draug: "Draugar",
-  alfa: "Álfar og huldufólk",
-  efra: "Helgisögur",
+  alfa: "\u00c1lfar og hulduf\u00f3lk",
+  efra: "Helgis\u00f6gur",
 };
 
 export default function StoriesPage() {
@@ -36,10 +36,10 @@ export default function StoriesPage() {
         if (!res.ok) {
           return;
         }
-        const data = (await res.json()) as StoriesCategoryArrayInterface[];
+        const data: StoriesCategoryArrayInterface[] = await res.json();
         setAllStories(data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 
@@ -48,27 +48,39 @@ export default function StoriesPage() {
 
   const categoryNames =
     allStories?.map(
-      (category: StoriesCategoryArrayInterface) =>
-        categoryDisplayNames[category.category] || category.category
+      (category) => categoryDisplayNames[category.category] || category.category
     ) || [];
 
-  const selectedCategory: StoriesCategoryArrayInterface | undefined =
+  const selectedCategory =
     clickedCategory === "all"
-      ? { category: "all", stories: allStories.flatMap((c) => c.stories) }
+      ? allStories
       : allStories.find((item) => item.category === clickedCategory);
 
-  const selectedStories = selectedCategory?.stories || [];
+  const selectedStories =
+    selectedCategory && "stories" in selectedCategory
+      ? selectedCategory.stories
+      : allStories.flatMap((category) => category.stories);
 
   let formattedStories: Record<string, string> = {};
 
-  if (Array.isArray(selectedStories)) {
-    formattedStories = selectedStories
-      .map((story) => Object.entries(story.stories))
-      .flat()
-      .reduce((acc, [key, value]) => {
-        acc[key] = value;
-        return acc;
-      }, {} as Record<string, string>);
+  if (selectedStories) {
+    if (Array.isArray(selectedStories)) {
+      formattedStories = selectedStories
+        .map((story) => Object.entries(story.stories))
+        .flat()
+        .reduce((acc, [key, value]) => {
+          acc[key] = value;
+          return acc;
+        }, {} as Record<string, string>);
+    } else if (typeof selectedStories === "object") {
+      formattedStories = Object.entries(selectedStories.stories).reduce(
+        (acc, [key, value]) => {
+          acc[key] = value;
+          return acc;
+        },
+        {} as Record<string, string>
+      );
+    }
   }
 
   const loadMoreStories = () => {
@@ -97,12 +109,8 @@ export default function StoriesPage() {
         {Object.keys(displayedStories).length > 0 ? (
           <>
             <StoriesCard
-              data={{
-                category: clickedCategory,
-                stories: displayedStories,
-              }}
+              data={{ category: clickedCategory, stories: displayedStories }}
               categoryName={clickedCategory}
-              visibleStories={visibleStories}
             />
             {Object.keys(displayedStories).length <
               Object.keys(formattedStories).length && (
