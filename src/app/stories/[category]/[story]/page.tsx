@@ -4,6 +4,11 @@ import React, { useState, useEffect, use } from "react";
 import ArrowLeft from "../../../../components/ArrowLeft";
 import Image from "next/image";
 
+interface StoryData {
+  title: string;
+  body: string;
+}
+
 const SingleStoryPage = ({
   params,
 }: {
@@ -12,9 +17,9 @@ const SingleStoryPage = ({
   const resolvedParams = use(params);
   const { category, story } = resolvedParams || {};
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<StoryData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!category || !story) {
@@ -30,7 +35,7 @@ const SingleStoryPage = ({
         const result = await response.json();
         setData(result);
         setIsLoading(false);
-      } catch (err) {
+      } catch {
         setError("Error loading story.");
         setIsLoading(false);
       }
