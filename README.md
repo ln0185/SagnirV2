@@ -1,72 +1,109 @@
-SagnirV2 is a modern web application built with Next.js, designed to provide users with a rich experience of Icelandic folklore stories. It leverages server-side rendering for better performance and SEO, along with a seamless user interface.
+SAGNIR V2
+# Icelandic Folklore App
 
-Features
-Server-side rendering with Next.js for fast and optimized performance.
-Responsive layout that adapts to all screen sizes.
-Real-time fetching of Icelandic folklore data via custom API routes.
-Built-in caching for improved data fetching performance.
-Search functionality for finding stories by name.
-Tech Stack
-Frontend: Next.js, React, Tailwind CSS
-Backend: Next.js API routes for handling server-side logic
-Database: No database required (fetches stories directly from an external API)
-Styling: Tailwind CSS for responsive and customizable UI components
-Getting Started
-To get started with the project, clone this repository and follow the instructions below:
+This project is an interactive application that brings Icelandic folklore to life. Built using **React**, **NextJS**, **TypeScript**, and **Tailwind CSS**, the app includes a variety of features designed to immerse users in the rich tapestry of Iceland's mythical stories.
 
-Prerequisites
-Ensure you have the following installed:
+## Features
 
-Node.js (version 14.x or higher)
-npm or yarn
-Installation
-Clone the repository:
+### 📜 **Stories Page**
+- Explore a collection of captivating Icelandic folklore stories.
+- Stories are dynamically generated from a **custom API**, developed specifically for this project, ensuring a unique and authentic experience.
 
-bash
+### 🔍 **Search Bar**
+- Quickly search through the stories to find your favorite myths and legends.
+- Responsive and intuitive, making it easy to find content.
 
-git clone https://github.com/your-username/sagnir-v2.git
-Navigate into the project directory:
+### 🗺️ **Interactive Map**
+- A **Leaflet-powered map** showcasing key locations tied to the stories.
+- Features include:
+  - **Custom cartographic overlay style** to provide a distinct and immersive aesthetic.
+  - **Pop-ups** on special locations that display related stories.
+  - **Geolocation support**, enabling users to view their position relative to the map's folklore landmarks.
 
-bash
+### ❓ **Quiz Page**
+- Test your knowledge of Icelandic folklore with a fun and engaging quiz.
+- Interactive feedback keeps users entertained while learning.
 
-cd sagnir-v2
-Install dependencies:
+## Technology Stack
 
-If you're using npm:
+- **React**: Component-based UI framework.
+- **NextJS**: Fast and optimized development environment and API fetching.
+- **TypeScript**: Ensures type safety and improves code quality.
+- **Tailwind CSS**: Enables rapid styling with utility-first classes.
+- **Leaflet**: For rendering the interactive map.
 
-bash
+## Getting Started
 
-npm install
-Or if you're using yarn:
+### Prerequisites
+Make sure you have the following installed:
+- **Node.js**: [Download Node.js](https://nodejs.org/)
+- **npm**: Package manager
 
-bash
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.comln0185/SagnirV2/.git
+   cd sagnir
 
-yarn install
-Run the development server:
+2. Install dependencies:
+    
+    ```bash
+    bash
+  
+    
+    npm install
+    
+    ```
 
-bash
-Copier
-Modifier
-npm run dev
-Or with yarn:
+### Running the Application
 
-bash
-Copier
-Modifier
-yarn dev
-Open your browser and go to http://localhost:3000 to see the app in action.
+1. Start the development server:
+    
+    ```bash
+    bash
+  
+    npm run dev
+    
+    ```
+    
+2. Open your browser and navigate to `http://localhost:3000`.
 
-API Routes
-The app has several API routes for fetching data from an external folklore API.
+## API Details
 
-/api/[category]: Fetches all stories for a specific category (e.g., "troll", "draug").
-/api/[category]/[story]: Fetches data for a specific story within a category.
-Deployment
-Vercel Deployment
-The project is optimized for deployment on Vercel. To deploy on Vercel:
+- The stories are fetched from a custom API developed in-house for this project.
+- API Base URL and endpoints can be configured in the project’s `.env` file:
+    
+    ```
+    env
+    Copier le code
+    VITE_API_BASE_URL=`https://thjodsogur-api.deno.dev/api
+    
+    ```
+    
 
-Push your code to a GitHub repository.
-Link the repository to your Vercel account.
-Vercel will automatically build and deploy the project.
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Map Configuration
+
+- The map is rendered using **Leaflet**, with custom styling provided by a cartographic overlay.
+- Locations of interest are preloaded and linked to corresponding stories via pop-ups.
+- Geolocation is enabled to enhance user engagement.
+
+## Deployment
+
+1. Build the project
+    
+    ```bash
+    bash
+  
+    npm run build
+    
+    ```
+    
+2. Serve the `dist/` directory using a static file server or deploy to a platform like **Vercel**, **Netlify**, or **GitHub Pages**.
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request.
+
+---
+
+Happy exploring the myths and legends of Iceland! 🌋
