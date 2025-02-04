@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const StoriesHeader = () => {
   return (
-    <header className="w-full p-5 bg-sagnir-100 sticky top-0 z-30">
+    <header className="w-full bg-sagnir-100 sticky top-0 z-30">
       <div className="flex flex-col md:flex md:flex-row md:justify-center">
         <div className="w-auto h-12 mb-7">
           <Image
