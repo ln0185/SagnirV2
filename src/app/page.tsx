@@ -73,7 +73,8 @@ export default function StoriesPage() {
           return acc;
         }, {} as Record<string, string>);
     } else if (typeof selectedStories === "object") {
-      formattedStories = Object.entries(selectedStories.stories).reduce(
+      const storyObj: StoryInterface = selectedStories as StoryInterface;
+      formattedStories = Object.entries(storyObj.stories).reduce(
         (acc, [key, value]) => {
           acc[key] = value;
           return acc;

@@ -32,7 +32,7 @@ type StoriesCardType = {
       }
     | { stories: { stories: Record<string, string> } }[];
   categoryName: string;
-  visibleStories: number;
+  visibleStories?: number;
 };
 
 export const StoriesCard = ({
