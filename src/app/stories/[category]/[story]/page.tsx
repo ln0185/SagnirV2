@@ -70,7 +70,7 @@ const SingleStoryPage = ({
   return (
     <div className="bg-sagnir-100">
       <ArrowLeft onClick={goback} />
-      <div className="flex-col flex items-center mb-12">
+      <div className="flex-col flex items-center w-screen mb-12">
         <Image
           src="/resources/huldufolk 1.png"
           alt="Huldufolk"
