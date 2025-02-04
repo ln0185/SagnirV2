@@ -106,7 +106,7 @@ export const Searchbar: React.FC<SearchbarProps> = ({
         </div>
       </div>
 
-      <div className="absolute bottom-24 left-4 right-4 mb-3 -z-10 md:left-96 md:right-96 w-[350px] md:w-[465px] text-sagnir-200 bg-sagnir-100 rounded-lg shadow-md p-4 font-glare">
+      <div className="absolute bottom-24 left-4 right-4 mb-4 -z-10 md:left-96 md:right-96 w-[350px] md:w-[465px] text-sagnir-200 bg-sagnir-100 rounded-lg shadow-md p-4 font-glare">
         {searchResult.length > 0 ? (
           <StoriesCard
             data={{ category: "", stories: searchResult }}
