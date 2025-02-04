@@ -121,7 +121,7 @@ export const StoriesCard = ({
                 alt={`Story ${title}`}
                 width={800}
                 height={500}
-                quality={95}
+                quality={90}
                 priority={index === 0}
                 loading={index === 0 ? "eager" : "lazy"}
                 className="w-full h-auto rounded-lg"
