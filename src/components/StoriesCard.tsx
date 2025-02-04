@@ -119,7 +119,9 @@ export const StoriesCard = ({
               <Image
                 src={photo}
                 alt={`Story ${title}`}
-                quality={100}
+                width={800}
+                height={500}
+                quality={95}
                 priority={index === 0}
                 className="w-full h-auto rounded-lg"
               />
