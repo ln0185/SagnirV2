@@ -117,10 +117,11 @@ export const StoriesCard = ({
           <figure key={index} className="flex flex-col items-center w-full">
             <header className="relative w-full">
               <Image
-                width={2000}
-                height={2000}
+                width={450}
+                height={250}
                 src={photo}
                 alt={`Story ${title}`}
+                quality={100}
                 className="w-full h-auto rounded-lg"
               />
               <h2
