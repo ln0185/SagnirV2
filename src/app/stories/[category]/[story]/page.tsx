@@ -76,6 +76,7 @@ const SingleStoryPage = ({
           alt="Huldufolk"
           width={500}
           height={500}
+          quality={90}
           className="w-full h-full md:h-2/3 md:w-full"
         />
         <h2 className="font-glare text-center text-sagnir-200 p-5 text-4xl md:p-6 md:text-6xl">
