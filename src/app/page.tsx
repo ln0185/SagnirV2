@@ -118,7 +118,7 @@ export default function StoriesPage() {
               <div className="flex justify-center mt-4">
                 <button
                   onClick={loadMoreStories}
-                  className="px-4 py-2 bg-sagnir-100 font-glare text-sagnir-200 text-md lg:text-md rounded border border-sagnir-200"
+                  className="px-4 py-2 mb-1 bg-sagnir-100 font-glare text-sagnir-200 text-md lg:text-md rounded border border-sagnir-200"
                 >
                   Load More
                 </button>
