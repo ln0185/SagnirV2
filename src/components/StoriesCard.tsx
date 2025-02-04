@@ -124,7 +124,7 @@ export const StoriesCard = ({
                 height={500}
                 quality={isMobile ? 50 : 90}
                 priority={index === 0}
-                loading={"eager"}
+                loading={index === 0 ? "eager" : "lazy"}
                 className="w-full h-auto rounded-lg"
               />
               <h2
