@@ -32,7 +32,7 @@ export default function StoriesPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/all");
+        const res = await fetch("https://sagnir-v2.vercel.app/api/all");
         if (!res.ok) {
           return;
         }
