@@ -122,6 +122,7 @@ export const StoriesCard = ({
                 src={photo}
                 alt={`Story ${title}`}
                 quality={100}
+                priority={false}
                 className="w-full h-auto rounded-lg"
               />
               <h2
