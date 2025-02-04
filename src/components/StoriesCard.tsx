@@ -117,7 +117,6 @@ export const StoriesCard = ({
           <figure key={index} className="flex flex-col items-center w-full">
             <header className="relative w-full">
               <Image
-                fill
                 src={photo}
                 alt={`Story ${title}`}
                 quality={100}
