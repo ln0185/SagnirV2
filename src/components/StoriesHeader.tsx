@@ -5,11 +5,11 @@ export const StoriesHeader = () => {
   return (
     <header className="w-full p-5 bg-sagnir-100 sticky top-0 z-30">
       <div className="flex flex-col md:flex md:flex-row md:justify-center">
-        <div className="w-12 h-12 mb-7">
+        <div className="w-auto h-12 mb-7">
           <Image
             src={headerImg}
-            width={40}
-            height={40}
+            width={38}
+            height={38}
             quality={100}
             alt="Logo"
           />
