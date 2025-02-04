@@ -17,3 +17,14 @@
   font-weight: bold;
   font-style: normal;
 }
+@media (min-width: 1024px) {
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
+}
