@@ -8,6 +8,7 @@ export const StoriesHeader = () => {
         <div className="w-auto h-12 mb-7">
           <Image
             src={headerImg}
+            layout="intrinsic"
             width={38}
             height={38}
             quality={100}
