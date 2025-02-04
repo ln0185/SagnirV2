@@ -14,6 +14,7 @@ import photo8 from "../../public/resources/hidden people.svg";
 import photo9 from "../../public/resources/hidden people 2.svg";
 import photo10 from "../../public/resources/MYND5.png";
 import photo11 from "../../public/resources/gillitrut.png";
+import { useMediaQuery } from "../app/hooks/useMediaQuery";
 
 const shuffleArray = <T,>(array: T[]): T[] => {
   const shuffledArray = [...array];
@@ -100,7 +101,7 @@ export const StoriesCard = ({
       `/stories/${categoryNavigations[category] || category}/${storySlug}`
     );
   };
-
+  const isMobile = useMediaQuery("(max-width: 768px)");
   if (!categoryStories || categoryStories.length === 0) {
     return (
       <p className="text-center">No stories available for this category.</p>
@@ -121,7 +122,7 @@ export const StoriesCard = ({
                 alt={`Story ${title}`}
                 width={800}
                 height={500}
-                quality={90}
+                quality={isMobile ? 50 : 90}
                 priority={index === 0}
                 loading={index === 0 ? "eager" : "lazy"}
                 className="w-full h-auto rounded-lg"
