@@ -5,7 +5,7 @@ export const StoriesHeader = () => {
   return (
     <header className="w-full p-5 bg-sagnir-100 sticky top-0 z-30">
       <div className="flex flex-col w-full md:flex md:flex-row md:justify-center">
-        <div className="w-[50px] h-auto mb-7">
+        <div className="w-auto h-auto mb-7 p-1">
           <Image
             src={headerImg}
             width={40}
