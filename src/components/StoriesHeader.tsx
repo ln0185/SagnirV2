@@ -13,7 +13,7 @@ export const StoriesHeader = () => {
             height={42}
             quality={100}
             alt="Logo"
-            className="w-full h-auto max-w-xs mx-auto object-contain"
+            className="w-full h-auto max-w-[50px] x-auto object-contain"
           />
         </div>
       </div>
