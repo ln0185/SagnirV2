@@ -4,7 +4,7 @@ import Image from "next/image";
 export const StoriesHeader = () => {
   return (
     <header className="w-full p-5 bg-sagnir-100 sticky top-0 z-30">
-      <div className="flex flex-col md:flex md:flex-row md:justify-center">
+      <div className="flex flex-col w-full md:flex md:flex-row md:justify-center">
         <div className="w-[50px] h-auto mb-7">
           <Image
             src={headerImg}
