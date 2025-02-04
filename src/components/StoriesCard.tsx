@@ -123,6 +123,7 @@ export const StoriesCard = ({
                 height={500}
                 quality={95}
                 priority={index === 0}
+                loading={index === 0 ? "eager" : "lazy"}
                 className="w-full h-auto rounded-lg"
               />
               <h2
