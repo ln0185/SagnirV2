@@ -82,7 +82,7 @@ const SingleStoryPage = ({
           {data?.title}
         </h2>
         <hr className="h-0.010 w-full bg-sagnir-200" />
-        <div className="font-glare text-[16px] text-sagnir-200 tracking-wide p-8 pt-5 leading-relaxed md:p-12">
+        <div className="font-glare text-[16px] text-sagnir-200 tracking-wide p-7 pt-5 leading-relaxed md:p-12">
           {data?.body &&
             breakTextIntoParagraphs(data.body).map((paragraph, index) => (
               <p key={index} className="mb-4">
