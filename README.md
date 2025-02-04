@@ -43,7 +43,7 @@ Make sure you have the following installed:
 1. Clone the repository:
    ```bash
    git clone https://github.comln0185/SagnirV2/.git
-   cd sagnir
+   cd sagnirV2
 
 2. Install dependencies:
     
