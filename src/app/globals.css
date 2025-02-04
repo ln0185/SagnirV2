@@ -11,9 +11,9 @@
 }
 
 @font-face {
-  font-family: "PPFragment-SerifExtrabold";
-  src: url("/fonts/PPFragment-SerifExtrabold.woff2") format("woff2"),
-    url("/fonts/PPFragment-SerifExtrabold.woff") format("woff");
+  font-family: "PPFragment-SerifExtraBold";
+  src: url("/fonts/PPFragment-SerifExtraBold.woff2") format("woff2"),
+    url("/fonts/PPFragment-SerifExtraBold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }

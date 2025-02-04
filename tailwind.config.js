@@ -11,7 +11,7 @@ module.exports = {
       },
       fontFamily: {
         glare: ["PPFragment-GlareRegular", "sans-serif"],
-        serifExtra: ["PPFragment-SerifExtrabold", "serif"],
+        serifExtra: ["PPFragment-SerifExtraBold", "serif"],
       },
     },
   },
