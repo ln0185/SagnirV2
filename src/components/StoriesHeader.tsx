@@ -9,8 +9,8 @@ export const StoriesHeader = () => {
           <Image
             src={headerImg}
             layout="intrinsic"
-            width={38}
-            height={38}
+            width={42}
+            height={42}
             quality={100}
             alt="Logo"
           />
