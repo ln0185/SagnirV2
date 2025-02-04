@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import searchIcon from "../../public/resources/search icon dark mode.svg";
 import crossIcon from "../../public/resources/cross dark mode.svg";
@@ -22,14 +22,15 @@ export const Searchbar: React.FC<SearchbarProps> = ({
   const [allStories, setAllStories] = useState<string[]>([]);
   const [searchResult, setSearchResult] = useState<string[]>([]);
 
+  const searchRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     const getSearchedStories = async () => {
       const res = await fetch(`/api/all`);
       const data = await res.json();
 
       const allFetchedStories = data?.flatMap((item: StoryInterface) => {
-        const combinedStories = Object.values(item.stories.stories);
-        return combinedStories;
+        return Object.values(item.stories.stories);
       });
 
       setAllStories(allFetchedStories || []);
@@ -51,6 +52,25 @@ export const Searchbar: React.FC<SearchbarProps> = ({
     setSearchResult(filteredStories);
   }, [searchedStory, allStories]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        setIsSearchOpen(false);
+      }
+    };
+
+    if (isSearchOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSearchOpen, setIsSearchOpen]);
+
   return (
     <div
       className={`fixed inset-0 bg-sagnir-100 bg-opacity-50 z-50 transition-opacity duration-300 ${
@@ -59,7 +79,10 @@ export const Searchbar: React.FC<SearchbarProps> = ({
           : "opacity-0 pointer-events-none"
       }`}
     >
-      <div className="absolute bottom-12 inset-x-4 mb-2 md:inset-x-96 w-[350px] md:w-[465px] bg-sagnir-100 p-4 rounded-md shadow-lg flex items-center space-x-3">
+      <div
+        ref={searchRef}
+        className="absolute bottom-12 inset-x-4 mb-2 md:inset-x-96 w-[350px] md:w-[465px] bg-sagnir-100 p-4 rounded-md shadow-lg flex items-center space-x-3"
+      >
         <div className="relative flex items-center w-full">
           <Image
             src={searchIcon}
@@ -84,7 +107,7 @@ export const Searchbar: React.FC<SearchbarProps> = ({
       </div>
 
       <div className="absolute bottom-24 left-4 right-4 mb-3 -z-10 md:left-96 md:right-96 w-[350px] md:w-[465px] text-sagnir-200 bg-sagnir-100 rounded-lg shadow-md p-4 font-glare">
-        {searchResult && searchResult.length ? (
+        {searchResult.length > 0 ? (
           <StoriesCard
             data={{ category: "", stories: searchResult }}
             categoryName={"all"}
