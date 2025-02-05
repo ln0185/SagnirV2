@@ -24,7 +24,12 @@ const Navbar: React.FC = () => {
       <nav className="w-full bg-sagnir-100 fixed bottom-0 z-50 border-b border-s-sagnir-200">
         <ul className="flex justify-around items-center py-4">
           <li onClick={() => setActive("StoriesPage")}>
-            <Link href="/" passHref>
+            <Link
+              href="/"
+              passHref
+              aria-label="Go to Stories Page"
+              title="Go to Stories Page"
+            >
               <Image
                 src={active === "StoriesPage" ? StoriesIconActive : StoriesIcon}
                 alt="StoriesPage"
@@ -49,7 +54,12 @@ const Navbar: React.FC = () => {
             />
           </li>
           <li onClick={() => setActive("MapPage")}>
-            <Link href="/map" passHref>
+            <Link
+              href="/map"
+              passHref
+              aria-label="Go to Map Page"
+              title="Go to Map Page"
+            >
               <Image
                 src={active === "MapPage" ? LocationIconActive : LocationIcon}
                 alt="MapPage"
@@ -60,7 +70,12 @@ const Navbar: React.FC = () => {
             </Link>
           </li>
           <li onClick={() => setActive("QuizPage")}>
-            <Link href="/quiz" passHref>
+            <Link
+              href="/quiz"
+              passHref
+              aria-label="Go to Quiz Page"
+              title="Go to Quiz Page"
+            >
               <Image
                 src={active === "QuizPage" ? QuizIconActive : QuizIcon}
                 alt="QuizPage"
