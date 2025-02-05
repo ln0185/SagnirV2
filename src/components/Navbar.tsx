@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
                 width={28}
                 height={28}
               />
-              <span className="opacity-0">Go to Stories Page</span>
+              <span>Go to Stories Page</span>
             </Link>
           </li>
           <li
@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
                 width={24}
                 height={24}
               />
-              <span className="opacity-0">Go to Map Page</span>
+              <span>Go to Map Page</span>
             </Link>
           </li>
           <li onClick={() => setActive("QuizPage")}>
@@ -85,7 +85,7 @@ const Navbar: React.FC = () => {
                 width={28}
                 height={28}
               />
-              <span className="opacity-0">Go to Quiz Page</span>
+              <span>Go to Quiz Page</span>
             </Link>
           </li>
         </ul>
