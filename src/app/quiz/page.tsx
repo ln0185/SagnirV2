@@ -109,7 +109,7 @@ const QuizPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-sagnir-100 text-sagnir-200 h-auto w-screen">
+    <div className="flex items-center justify-center bg-sagnir-100 text-sagnir-200 h-auto">
       <div className="flex flex-col w-full max-w-4xl">
         <div className="flex-none mx-8 mt-12 mb-6 md:mt-15">
           <ProgressBar
