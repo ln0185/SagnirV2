@@ -27,7 +27,7 @@ export default function StoriesPage() {
     []
   );
   const [clickedCategory, setClickedCategory] = useState<string>("all");
-  const [visibleStories, setVisibleStories] = useState<number>(3);
+  const [visibleStories, setVisibleStories] = useState<number>(6);
 
   useEffect(() => {
     const fetchData = async () => {
