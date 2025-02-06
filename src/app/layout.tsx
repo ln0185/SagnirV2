@@ -13,7 +13,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <link
           rel="icon"
           type="image/svg+xml"
-          href="/src/assets/resources/Logo.svg"
+          href="./public/resources/Logo.svg"
         />
         <title>Sagnir</title>
       </head>
