@@ -25,7 +25,7 @@ export const Categories = ({ data, setClickedCategory }: CategoriesType) => {
 
   return (
     <div className="flex flex-row bg-sagnir-100 text-sagnir-200 text-lg">
-      <ul className="flex flex-row gap-10 justify-between overflow-x-scroll md:w-full md:text-2xl py-4 px-4 md:overflow-x-hidden">
+      <ul className="flex flex-row gap-8 justify-between overflow-x-scroll md:w-full md:text-2xl py-4 px-4 md:overflow-x-hidden">
         {data.length > 0 && (
           <li
             onClick={(e) => handleCategory((e.target as HTMLElement).innerText)}
@@ -41,7 +41,7 @@ export const Categories = ({ data, setClickedCategory }: CategoriesType) => {
         {data.map((item) => (
           <li
             onClick={() => handleCategory(item)}
-            className={`flex-align font-glare text-md text-nowrap cursor-pointer ${
+            className={`flex-align font-glare text-md whitespace-nowrap cursor-pointer ${
               activeCategory === item
                 ? "border-b-2 border-sagnir-200"
                 : "hover:border-b-2 hover:border-sagnir-200"
