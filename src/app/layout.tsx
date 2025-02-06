@@ -18,7 +18,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <title>Sagnir</title>
       </head>
       <body>
-        <div className="h-auto w-screen relative">
+        <div className="h-auto relative">
           <NavBar />
           <div>
             <Link href="/"></Link>
