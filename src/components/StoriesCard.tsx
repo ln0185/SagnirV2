@@ -28,9 +28,9 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 type StoriesCardType = {
   data:
     | {
-      category: string;
-      stories: string[] | Record<string, string>;
-    }
+        category: string;
+        stories: string[] | Record<string, string>;
+      }
     | { stories: { stories: Record<string, string> } }[];
   categoryName: string;
   visibleStories?: number;
@@ -52,26 +52,26 @@ export const StoriesCard = ({
     default: [photo1, photo2, photo3, photo4, photo5, photo6],
   };
 
-  const selectedPhotos = categoryPhotos[categoryName.toLowerCase()] ||
-    categoryPhotos.default;
+  const selectedPhotos =
+    categoryPhotos[categoryName.toLowerCase()] || categoryPhotos.default;
 
   useEffect(() => {
     setShuffledPhotos(shuffleArray(selectedPhotos));
   }, [categoryName, visibleStories]);
 
   const storyNavigations: Record<string, string> = {
-    "Álfadrottning í álögum": "alfa-dr",
-    "Álfafólkið í Loðmundarfirði": "a-lodmfj",
-    "Álfakóngurinn í Seley": "seley",
-    "Ábæjar-Skotta": "skotta3",
-    "Átján draugar úr Blöndu": "18draug",
-    "Átján sendingar í senn": "18send",
-    "Átján Skólabræður": "18skolab",
-    "Andrarímur og Hallgrímsrímur": "andra",
-    "Bergþór Bláfellingur": "blafell",
-    Bakkastaður: "bakka",
-    "Brytinn í Skálholti": "brytinn",
-    "Dansinn í Hruna": "hruna",
+    "Álfadrottning í álögum": "alfadrottning-i-alogum",
+    "Álfafólkið í Loðmundarfirði": "alfafolkid-i-lodmundarfirdi",
+    "Álfakóngurinn í Seley": "alfakongurinn-i-seley",
+    "Ábæjar-Skotta": "abaejar-skotta",
+    "Átján draugar úr Blöndu": "atjan-draugar-ur-blondu",
+    "Átján sendingar í senn": "atjan-sendingar-i-senn",
+    "Átján Skólabræður": "18-skolabraedur",
+    "Andrarímur og Hallgrímsrímur": "andrarimur-og-hallgrimsrimur",
+    "Bergþór Bláfellingur": "bergthor-blafellingur",
+    Bakkastaður: "bakkastadur",
+    "Brytinn í Skálholti": "brytinn-i-skalholti",
+    "Dansinn í Hruna": "dansinn-i-hruna",
   };
 
   useEffect(() => {
@@ -99,7 +99,7 @@ export const StoriesCard = ({
     const storySlug = storyNavigations[story] || story;
 
     router.push(
-      `/stories/${categoryNavigations[category] || category}/${storySlug}`,
+      `/stories/${categoryNavigations[category] || category}/${storySlug}`
     );
   };
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -130,8 +130,7 @@ export const StoriesCard = ({
               />
               <h2
                 className="absolute bottom-2 left-2 text-sagnir-200 font-serifExtra text-2xl md:text-4xl xl:text-5xl px-2 py-1 rounded-md cursor-pointer"
-                onClick={() =>
-                  handleStoryClick(story, categoryName)}
+                onClick={() => handleStoryClick(story, categoryName)}
               >
                 {title}
               </h2>
