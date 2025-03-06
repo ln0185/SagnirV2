@@ -1,4 +1,4 @@
-import headerImg from "./../../public/resources/logo.svg";
+import headerImg from "./../../public/resources/Logo.svg";
 import Image from "next/image";
 
 export const StoriesHeader = () => {

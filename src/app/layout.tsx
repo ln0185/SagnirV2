@@ -10,7 +10,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="An app about Icelandic Folklore" />
-        <link rel="icon" type="image/svg+xml" href="./resources/logo.svg" />
+        <link rel="icon" type="image/svg+xml" href="./resources/Logo.svg" />
         <title>Sagnir</title>
       </head>
       <body>
