@@ -60,18 +60,18 @@ export const StoriesCard = ({
   }, [categoryName, visibleStories]);
 
   const storyNavigations: Record<string, string> = {
-    "Álfadrottning í álögum": "alfadrottning-i-alogum",
-    "Álfafólkið í Loðmundarfirði": "alfafolkid-i-lodmundarfirdi",
-    "Álfakóngurinn í Seley": "alfakongurinn-i-seley",
-    "Ábæjar-Skotta": "abaejar-skotta",
-    "Átján draugar úr Blöndu": "atjan-draugar-ur-blondu",
-    "Átján sendingar í senn": "atjan-sendingar-i-senn",
-    "Átján Skólabræður": "18-skolabraedur",
-    "Andrarímur og Hallgrímsrímur": "andrarimur-og-hallgrimsrimur",
-    "Bergþór Bláfellingur": "bergthor-blafellingur",
-    Bakkastaður: "bakkastadur",
-    "Brytinn í Skálholti": "brytinn-i-skalholti",
-    "Dansinn í Hruna": "dansinn-i-hruna",
+    "Álfadrottning í álögum": "alfa-dr",
+    "Álfafólkið í Loðmundarfirði": "a-lodmfj",
+    "Álfakóngurinn í Seley": "seley",
+    "Ábæjar-Skotta": "skotta3",
+    "Átján draugar úr Blöndu": "18draug",
+    "Átján sendingar í senn": "18send",
+    "Átján Skólabræður": "18skolab",
+    "Andrarímur og Hallgrímsrímur": "andra",
+    "Bergþór Bláfellingur": "blafell",
+    Bakkastaður: "bakka",
+    "Brytinn í Skálholti": "brytinn",
+    "Dansinn í Hruna": "hruna",
   };
 
   useEffect(() => {
