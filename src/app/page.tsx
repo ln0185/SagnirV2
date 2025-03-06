@@ -26,7 +26,9 @@ export default function StoriesPage() {
   const [allStories, setAllStories] = useState<StoriesCategoryArrayInterface[]>(
     []
   );
-  const [clickedCategory, setClickedCategory] = useState<string>("all");
+  const [clickedCategory, setClickedCategory] = useState<string>(
+    "ur-efra-og-nedra-helgisogur"
+  );
   const [visibleStories, setVisibleStories] = useState<number>(6);
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export default function StoriesPage() {
     ) || [];
 
   const selectedCategory =
-    clickedCategory === "all"
+    clickedCategory === "ur-efra-og-nedra-helgisogur"
       ? allStories
       : allStories.find((item) => item.category === clickedCategory);
 

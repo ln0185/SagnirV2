@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image, { StaticImageData } from "next/image";
@@ -34,6 +32,14 @@ type StoriesCardType = {
     | { stories: { stories: Record<string, string> } }[];
   categoryName: string;
   visibleStories?: number;
+};
+
+const formatTitle = (title: string) => {
+  return title
+    .replace(/-/g, " ")
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
 };
 
 export const StoriesCard = ({
@@ -75,13 +81,15 @@ export const StoriesCard = ({
   };
 
   useEffect(() => {
-    if (categoryName === "all" && data) {
-      console.log(data);
+    if (categoryName === "ur-efra-og-nedra-helgisogur" && data) {
       const allStories = Array.isArray(data)
         ? data.flatMap((item) => Object.values(item?.stories.stories).flat())
         : Object.values(data?.stories || {});
       setCategoryStories(allStories);
-    } else if (!Array.isArray(data) && data.category !== "all") {
+    } else if (
+      !Array.isArray(data) &&
+      data.category !== "ur-efra-og-nedra-helgisogur"
+    ) {
       const catStories = Object.values(data?.stories || {});
       setCategoryStories(catStories);
     }
@@ -89,7 +97,7 @@ export const StoriesCard = ({
 
   const handleStoryClick = (story: string, category: string) => {
     const categoryNavigations: Record<string, string> = {
-      Allt: "all",
+      Allt: "ur-efra-og-nedra-helgisogur",
       Tröll: "troll",
       Draugar: "draugar",
       "Álfar og huldufólk": "alfar-og-huldufolk",
@@ -102,6 +110,7 @@ export const StoriesCard = ({
       `/stories/${categoryNavigations[category] || category}/${storySlug}`
     );
   };
+
   const isMobile = useMediaQuery("(max-width: 768px)");
   if (!categoryStories || categoryStories.length === 0) {
     return (
@@ -112,7 +121,7 @@ export const StoriesCard = ({
   return (
     <div className="bg-sagnir-100 flex flex-wrap flex-col justify-center w-full gap-4">
       {categoryStories.slice(0, visibleStories).map((story, index) => {
-        const title = story?.replace(/[/]/g, "") || "Untitled";
+        const title = formatTitle(story?.replace(/[/]/g, "") || "Untitled");
         const photo = shuffledPhotos[index % shuffledPhotos.length] || photo1;
 
         return (
