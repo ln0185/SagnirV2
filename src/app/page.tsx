@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StoriesHeader } from "../components/StoriesHeader";
 import { Categories } from "../components/Categories";
 import { StoriesCard } from "../components/StoriesCard";
@@ -17,14 +17,14 @@ interface StoriesCategoryArrayInterface {
 
 const categoryDisplayNames: { [key: string]: string } = {
   troll: "Tröll",
-  draug: "Draugar",
-  alfa: "Álfar og huldufólk",
-  efra: "Helgisögur",
+  draugar: "Draugar",
+  "alfar-og-huldufolk": "Álfar og huldufólk",
+  "ur-efra-og-nedra-helgisogur": "Helgisögur",
 };
 
 export default function StoriesPage() {
   const [allStories, setAllStories] = useState<StoriesCategoryArrayInterface[]>(
-    []
+    [],
   );
   const [clickedCategory, setClickedCategory] = useState<string>("all");
   const [visibleStories, setVisibleStories] = useState<number>(6);
@@ -32,7 +32,7 @@ export default function StoriesPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://sagnir-v2.vercel.app/api/all");
+        const res = await fetch("/api/all");
         if (!res.ok) {
           return;
         }
@@ -46,20 +46,19 @@ export default function StoriesPage() {
     fetchData();
   }, []);
 
-  const categoryNames =
-    allStories?.map(
-      (category) => categoryDisplayNames[category.category] || category.category
-    ) || [];
+  const categoryNames = allStories?.map(
+    (category) => categoryDisplayNames[category.category] || category.category,
+  ) || [];
 
-  const selectedCategory =
-    clickedCategory === "all"
-      ? allStories
-      : allStories.find((item) => item.category === clickedCategory);
+  const selectedCategory = clickedCategory === "all"
+    ? allStories
+    : allStories.find((item) => item.category === clickedCategory);
 
-  const selectedStories =
-    selectedCategory && "stories" in selectedCategory
-      ? selectedCategory.stories
-      : allStories.flatMap((category) => category.stories);
+  console.log(allStories);
+
+  const selectedStories = selectedCategory && "stories" in selectedCategory
+    ? selectedCategory.stories
+    : allStories.flatMap((category) => category.stories);
 
   let formattedStories: Record<string, string> = {};
 
@@ -79,7 +78,7 @@ export default function StoriesPage() {
           acc[key] = value;
           return acc;
         },
-        {} as Record<string, string>
+        {} as Record<string, string>,
       );
     }
   }
@@ -107,27 +106,27 @@ export default function StoriesPage() {
         </div>
       )}
       <div className="pt-2 pb-9 overflow-hidden">
-        {Object.keys(displayedStories).length > 0 ? (
-          <>
-            <StoriesCard
-              data={{ category: clickedCategory, stories: displayedStories }}
-              categoryName={clickedCategory}
-            />
-            {Object.keys(displayedStories).length <
-              Object.keys(formattedStories).length && (
-              <div className="flex justify-center mt-4">
-                <button
-                  onClick={loadMoreStories}
-                  className="px-4 py-2 mb-1 bg-sagnir-100 font-glare text-sagnir-200 text-md lg:text-md rounded border border-sagnir-200"
-                >
-                  Load More
-                </button>
-              </div>
-            )}
-          </>
-        ) : (
-          <p className="text-sagnir-200">Loading...</p>
-        )}
+        {Object.keys(displayedStories).length > 0
+          ? (
+            <>
+              <StoriesCard
+                data={{ category: clickedCategory, stories: displayedStories }}
+                categoryName={clickedCategory}
+              />
+              {Object.keys(displayedStories).length <
+                  Object.keys(formattedStories).length && (
+                <div className="flex justify-center mt-4">
+                  <button
+                    onClick={loadMoreStories}
+                    className="px-4 py-2 mb-1 bg-sagnir-100 font-glare text-sagnir-200 text-md lg:text-md rounded border border-sagnir-200"
+                  >
+                    Load More
+                  </button>
+                </div>
+              )}
+            </>
+          )
+          : <p className="text-sagnir-200">Loading...</p>}
       </div>
     </div>
   );

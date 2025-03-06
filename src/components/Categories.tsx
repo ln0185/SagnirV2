@@ -15,9 +15,13 @@ export const Categories = ({ data, setClickedCategory }: CategoriesType) => {
 
     if (formattedCategory === "Allt") formattedCategory = "all";
     if (formattedCategory === "Tröll") formattedCategory = "troll";
-    if (formattedCategory === "Draugar") formattedCategory = "draug";
-    if (formattedCategory === "Álfar og huldufólk") formattedCategory = "alfa";
-    if (formattedCategory === "Helgisögur") formattedCategory = "efra";
+    if (formattedCategory === "Draugar") formattedCategory = "draugar";
+    if (formattedCategory === "Álfar og huldufólk") {
+      formattedCategory = "alfar-og-huldufolk";
+    }
+    if (formattedCategory === "Helgisögur") {
+      formattedCategory = "ur-efra-og-nedra-helgisogur";
+    }
 
     setActiveCategory(clickedCategory);
     setClickedCategory(formattedCategory);
@@ -29,11 +33,10 @@ export const Categories = ({ data, setClickedCategory }: CategoriesType) => {
         {data.length > 0 && (
           <li
             onClick={(e) => handleCategory((e.target as HTMLElement).innerText)}
-            className={`pl-2 cursor-pointer ${
-              activeCategory === "Allt"
+            className={`pl-2 cursor-pointer ${activeCategory === "Allt"
                 ? "border-b-2 border-sagnir-200"
                 : "hover:border-b-2 hover:border-sagnir-200"
-            }`}
+              }`}
           >
             Allt
           </li>
@@ -41,11 +44,10 @@ export const Categories = ({ data, setClickedCategory }: CategoriesType) => {
         {data.map((item) => (
           <li
             onClick={() => handleCategory(item)}
-            className={`flex-align font-glare text-md whitespace-nowrap cursor-pointer ${
-              activeCategory === item
+            className={`flex-align font-glare text-md whitespace-nowrap cursor-pointer ${activeCategory === item
                 ? "border-b-2 border-sagnir-200"
                 : "hover:border-b-2 hover:border-sagnir-200"
-            }`}
+              }`}
             key={item}
           >
             {item}

@@ -10,25 +10,25 @@ export default async function handler(req, res) {
 
   try {
     const [data1, data2, data3, data4] = await Promise.all([
-      fetch("https://thjodsogur-api.deno.dev/api/troll").then((res) =>
-        res.json()
+      fetch("https://thjodsogur.vegur.is/thjodsogur/troll").then((res) =>
+        res.json(),
       ),
-      fetch("https://thjodsogur-api.deno.dev/api/draug").then((res) =>
-        res.json()
+      fetch("https://thjodsogur.vegur.is/thjodsogur/draugar").then((res) =>
+        res.json(),
       ),
-      fetch("https://thjodsogur-api.deno.dev/api/alfa").then((res) =>
-        res.json()
+      fetch("https://thjodsogur.vegur.is/thjodsogur/alfar-og-huldufolk").then(
+        (res) => res.json(),
       ),
-      fetch("https://thjodsogur-api.deno.dev/api/efra").then((res) =>
-        res.json()
-      ),
+      fetch(
+        "https://thjodsogur.vegur.is/thjodsogur/ur-efra-og-nedra-helgisogur",
+      ).then((res) => res.json()),
     ]);
 
     cachedData = [
       { category: "troll", stories: data1 },
-      { category: "draug", stories: data2 },
-      { category: "alfa", stories: data3 },
-      { category: "efra", stories: data4 },
+      { category: "draugar", stories: data2 },
+      { category: "alfar-og-huldufolk", stories: data3 },
+      { category: "ur-efra-og-nedra-helgisogur", stories: data4 },
     ];
     cacheExpiration = Date.now() + 1000 * 60 * 5;
     res.status(200).json(cachedData);
