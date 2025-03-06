@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import React, { useEffect, useState } from "react";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./Map.css";
 import L from "leaflet";
@@ -119,19 +119,19 @@ const markers: MarkerData[] = [
 
 const Map = () => {
   const [userPosition, setUserPosition] = useState<[number, number] | null>(
-    null
+    null,
   );
   const router = useRouter();
 
   function handleStoryClick(item: string, category: string) {
     if (category === "Huldufólk") {
-      category = "alfa";
+      category = "alfar-og-huldufolk";
     }
     if (category === "Helgisögur") {
-      category = "efra";
+      category = "ur-efra-og-nedra-helgisogur";
     }
     if (category === "Draugar") {
-      category = "draug";
+      category = "draugar";
     }
     if (category === "Tröll") {
       category = "troll";
@@ -192,7 +192,8 @@ const Map = () => {
           <Marker key={marker.id} position={marker.position} icon={customIcon}>
             <Popup className="custom-popup">
               <div
-                onClick={() => handleStoryClick(marker.title, marker.category)}
+                onClick={() =>
+                  handleStoryClick(marker.title, marker.category)}
                 className="!bg-sagnir-100 !text-sagnir-200 !rounded-none !w-[18rem] !h-auto !shadow-none m-1 p-2"
               >
                 <h2 className="!bg-sagnir-100 !text-xl !font-serifExtra p-1 m-1">
@@ -207,8 +208,7 @@ const Map = () => {
                 <button
                   className="!text-sagnir-200 !font-glare !text-sm m-1"
                   onClick={() =>
-                    handleStoryClick(marker.title, marker.category)
-                  }
+                    handleStoryClick(marker.title, marker.category)}
                 >
                   Read More &#8594;
                 </button>
