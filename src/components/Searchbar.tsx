@@ -30,7 +30,7 @@ export const Searchbar: React.FC<SearchbarProps> = ({
       const data = await res.json();
 
       const allFetchedStories = data?.flatMap((item: StoryInterface) => {
-        return Object.values(item.stories.stories);
+        return Object.values(item.stories?.stories ?? {});
       });
 
       setAllStories(allFetchedStories || []);

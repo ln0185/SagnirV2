@@ -10,16 +10,16 @@ export default async function handler(req, res) {
 
   try {
     const [data1, data2, data3, data4] = await Promise.all([
-      fetch("https://thjodsogur-api.deno.dev/api/troll").then((res) =>
+      fetch("https://thjodsogur.vegur.is/thjodsogur/troll").then((res) =>
         res.json()
       ),
-      fetch("https://thjodsogur-api.deno.dev/api/draug").then((res) =>
+      fetch("https://thjodsogur.vegur.is/thjodsogur/draugar").then((res) =>
         res.json()
       ),
-      fetch("https://thjodsogur-api.deno.dev/api/alfa").then((res) =>
+      fetch("https://thjodsogur.vegur.is/thjodsogur/alfa").then((res) =>
         res.json()
       ),
-      fetch("https://thjodsogur-api.deno.dev/api/efra").then((res) =>
+      fetch("https://thjodsogur.vegur.is/thjodsogur/efra").then((res) =>
         res.json()
       ),
     ]);

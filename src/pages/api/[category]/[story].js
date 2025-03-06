@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const { category, story } = req.query;
 
   try {
-    const apiUrl = `https://thjodsogur-api.deno.dev/api/${encodeURIComponent(
+    const apiUrl = `https://thjodsogur.vegur.is/thjodsogur/${encodeURIComponent(
       category
     )}/${encodeURIComponent(story)}`;
     console.log("Requesting URL:", apiUrl);

@@ -131,7 +131,7 @@ const Map = () => {
       category = "efra";
     }
     if (category === "Draugar") {
-      category = "draug";
+      category = "draugar";
     }
     if (category === "Tröll") {
       category = "troll";

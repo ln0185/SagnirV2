@@ -17,7 +17,7 @@ interface StoriesCategoryArrayInterface {
 
 const categoryDisplayNames: { [key: string]: string } = {
   troll: "Tröll",
-  draug: "Draugar",
+  draugar: "Draugar",
   alfa: "Álfar og huldufólk",
   efra: "Helgisögur",
 };
@@ -32,7 +32,7 @@ export default function StoriesPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://sagnir-v2.vercel.app/api/all");
+        const res = await fetch("https://thjodsogur.vegur.is/thjodsogur");
         if (!res.ok) {
           return;
         }
