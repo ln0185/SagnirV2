@@ -76,7 +76,7 @@ Make sure you have the following installed:
     ```
     env
     Copier le code
-    VITE_API_BASE_URL=`https://thjodsogur-api.deno.dev/api
+    VITE_API_BASE_URL=`https://thjodsogur.vegur.is/thjodsogur
     
     ```
     
