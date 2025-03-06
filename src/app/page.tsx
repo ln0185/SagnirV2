@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StoriesHeader } from "../components/StoriesHeader";
 import { Categories } from "../components/Categories";
 import { StoriesCard } from "../components/StoriesCard";
@@ -18,8 +18,8 @@ interface StoriesCategoryArrayInterface {
 const categoryDisplayNames: { [key: string]: string } = {
   troll: "Tröll",
   draugar: "Draugar",
-  alfa: "Álfar og huldufólk",
-  efra: "Helgisögur",
+  "alfar-og-huldufolk": "Álfar og huldufólk",
+  "ur-efra-og-nedra-helgisogur": "Helgisögur",
 };
 
 export default function StoriesPage() {
@@ -32,7 +32,7 @@ export default function StoriesPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://thjodsogur.vegur.is/thjodsogur");
+        const res = await fetch("/api/all");
         if (!res.ok) {
           return;
         }
@@ -55,6 +55,8 @@ export default function StoriesPage() {
     clickedCategory === "all"
       ? allStories
       : allStories.find((item) => item.category === clickedCategory);
+
+  console.log(allStories);
 
   const selectedStories =
     selectedCategory && "stories" in selectedCategory

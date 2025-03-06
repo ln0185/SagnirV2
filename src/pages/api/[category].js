@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(
-      `https://thjodsogur.vegur.is/thjodsogur/${category}`
+      `https://thjodsogur.vegur.is/thjodsogur/${category}``https://thjodsogur.vegur.is/thjodsogur/${category}`
     );
     const data = await response.json();
     res.status(200).json(data);

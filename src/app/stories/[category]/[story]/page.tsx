@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, use } from "react";
+import React, { use, useEffect, useState } from "react";
 import ArrowLeft from "../../../../components/ArrowLeft";
 import Image from "next/image";
 
 interface StoryData {
   title: string;
-  body: string;
+  content: string;
 }
 
 const SingleStoryPage = ({
@@ -84,8 +84,8 @@ const SingleStoryPage = ({
         </h2>
         <hr className="h-0.010 w-full bg-sagnir-200" />
         <div className="font-glare text-[16px] text-sagnir-200 tracking-wide p-7 pt-5 leading-relaxed md:p-12">
-          {data?.body &&
-            breakTextIntoParagraphs(data.body).map((paragraph, index) => (
+          {data?.content &&
+            breakTextIntoParagraphs(data.content).map((paragraph, index) => (
               <p key={index} className="mb-4">
                 {paragraph.trim()}
               </p>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import React, { useEffect, useState } from "react";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./Map.css";
 import L from "leaflet";
@@ -33,7 +33,7 @@ const markers: MarkerData[] = [
     title: "Geirfuglasker",
     category: "Huldufólk",
     description:
-      "Í fyrri tíð bjó prestur einn á Melstað er Ásmundur hét; hann var ríkur maður og vel metinn. Hann átti tvær dætur...",
+      "Það er í sögnum haft að einn tíma eftir það að kristni var komin á Ísland og kirkjur...",
   },
   {
     id: 2,
@@ -125,10 +125,10 @@ const Map = () => {
 
   function handleStoryClick(item: string, category: string) {
     if (category === "Huldufólk") {
-      category = "alfa";
+      category = "alfar-og-huldufolk";
     }
     if (category === "Helgisögur") {
-      category = "efra";
+      category = "ur-efra-og-nedra-helgisogur";
     }
     if (category === "Draugar") {
       category = "draugar";
@@ -137,37 +137,37 @@ const Map = () => {
       category = "troll";
     }
     if (item === "Geirfuglasker") {
-      item = "geirfugl";
+      item = "alfkonan-i-geirfuglaskeri";
     }
     if (item === "Loðmundarfjörður") {
-      item = "a-lodmfj";
+      item = "alfafolkid-i-lodmundarfirdi";
     }
     if (item === "Melstaðarkirkja") {
-      item = "jonas";
+      item = "jonas-a-melstad";
     }
     if (item === "Skaftafell") {
       item = "einar-sk";
     }
     if (item === "Jórukleif") {
-      item = "jora";
+      item = "jora-i-jorukleif";
     }
     if (item === "Eyvindarmúli") {
-      item = "gudm-eyv";
+      item = "gudmundur-a-eyvindarmula";
     }
     if (item === "Rafnkelsstaðir") {
-      item = "flugan";
+      item = "bergthor-og-flugan";
     }
     if (item === "Snjóholt") {
-      item = "setta2";
+      item = "eida-sezelia";
     }
     if (item === "Reynisstaðarkirkja") {
-      item = "reynis";
+      item = "reynistadabraedur";
     }
     if (item === "Húnavatnssýsla") {
-      item = "sat-nafn";
+      item = "satan-vitjar-nafns";
     }
     if (item === "Hruni") {
-      item = "hruna";
+      item = "dansinn-i-hruna";
     }
     router.push(`/stories/${category}/${item}`);
   }

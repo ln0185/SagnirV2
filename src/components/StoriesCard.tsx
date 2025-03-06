@@ -28,9 +28,9 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 type StoriesCardType = {
   data:
     | {
-        category: string;
-        stories: string[] | Record<string, string>;
-      }
+      category: string;
+      stories: string[] | Record<string, string>;
+    }
     | { stories: { stories: Record<string, string> } }[];
   categoryName: string;
   visibleStories?: number;
@@ -48,12 +48,12 @@ export const StoriesCard = ({
   const categoryPhotos: Record<string, StaticImageData[]> = {
     troll: [photo1, photo2, photo3, photo4, photo5, photo6],
     draugar: [photo7, photo8, photo9, photo10, photo11],
-    alfa: [photo1, photo2, photo3, photo4, photo5, photo6],
+    "alfar-og-huldufolk": [photo1, photo2, photo3, photo4, photo5, photo6],
     default: [photo1, photo2, photo3, photo4, photo5, photo6],
   };
 
-  const selectedPhotos =
-    categoryPhotos[categoryName.toLowerCase()] || categoryPhotos.default;
+  const selectedPhotos = categoryPhotos[categoryName.toLowerCase()] ||
+    categoryPhotos.default;
 
   useEffect(() => {
     setShuffledPhotos(shuffleArray(selectedPhotos));
@@ -76,6 +76,7 @@ export const StoriesCard = ({
 
   useEffect(() => {
     if (categoryName === "all" && data) {
+      console.log(data);
       const allStories = Array.isArray(data)
         ? data.flatMap((item) => Object.values(item?.stories.stories).flat())
         : Object.values(data?.stories || {});
@@ -91,14 +92,14 @@ export const StoriesCard = ({
       Allt: "all",
       Tröll: "troll",
       Draugar: "draugar",
-      "alfar-og-huldufolk": "alfa",
+      "Álfar og huldufólk": "alfar-og-huldufolk",
       Helgisögur: "ur-efra-og-nedra-helgisogur",
     };
 
     const storySlug = storyNavigations[story] || story;
 
     router.push(
-      `/stories/${categoryNavigations[category] || category}/${storySlug}`
+      `/stories/${categoryNavigations[category] || category}/${storySlug}`,
     );
   };
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -129,7 +130,8 @@ export const StoriesCard = ({
               />
               <h2
                 className="absolute bottom-2 left-2 text-sagnir-200 font-serifExtra text-2xl md:text-4xl xl:text-5xl px-2 py-1 rounded-md cursor-pointer"
-                onClick={() => handleStoryClick(story, categoryName)}
+                onClick={() =>
+                  handleStoryClick(story, categoryName)}
               >
                 {title}
               </h2>
