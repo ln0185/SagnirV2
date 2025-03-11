@@ -79,18 +79,6 @@ Make sure you have the following installed:
 
 2. Open your browser and navigate to `http://localhost:3000`.
 
-## API Details
-
-- The stories are fetched from a custom API developed in-house for this project.
-- API Base URL and endpoints can be configured in the project’s `.env` file:
-
-  ```
-  env
-  
-  VITE_API_BASE_URL=`https://thjodsogur.vegur.is/thjodsogur
-
-  ```
-
 ## Map Configuration
 
 - The map is rendered using **Leaflet**, with custom styling provided by a cartographic overlay.
