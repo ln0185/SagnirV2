@@ -3,9 +3,9 @@
 import axios from "axios";
 import { load } from "cheerio";
 
-const baseURL = "https://netutgafan.snerpa.is/thjod";
+/* const baseURL = "https://netutgafan.snerpa.is/thjod"; */
 export default async function handler(req, res) {
-  const { category, story } = req.query;
+  const { story } = req.query;
   console.log(story);
   const data = await axios.get(
     "https://netutgafan.snerpa.is/thjod/" + story + ".htm"
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   ); */
 
   /*   const jsonStories = stories.map((story) => story.value?.html()); */
-  console.log(json);
+
   res.send(json);
 
   /*   try {
