@@ -1,9 +1,33 @@
-import fetch from "node-fetch";
+/* import fetch from "node-fetch"; */
 
+import axios from "axios";
+import { load } from "cheerio";
+
+const baseURL = "https://netutgafan.snerpa.is/thjod";
 export default async function handler(req, res) {
   const { category, story } = req.query;
+  console.log(story);
+  const data = await axios.get(
+    "https://netutgafan.snerpa.is/thjod/" + story + ".htm"
+  );
+  const json = load(data.data).extract({
+    title: {
+      selector: "h2",
+    },
+    content: {
+      selector: "blockquote",
+    },
+  });
+  console.log(json);
+  /*  const stories = await Promise.allSettled(
+    json.links.map((link) => fromURL(baseURL + link.slice(1)))
+  ); */
 
-  try {
+  /*   const jsonStories = stories.map((story) => story.value?.html()); */
+  console.log(json);
+  res.send(json);
+
+  /*   try {
     const apiUrl = `https://thjodsogur.vegur.is/thjodsogur/${encodeURIComponent(
       category
     )}/${encodeURIComponent(story)}`;
@@ -19,5 +43,5 @@ export default async function handler(req, res) {
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Error fetching story" });
-  }
+  } */
 }

@@ -13,8 +13,7 @@ export const Categories = ({ data, setClickedCategory }: CategoriesType) => {
   const handleCategory = (clickedCategory: string) => {
     let formattedCategory = clickedCategory;
 
-    if (formattedCategory === "Allt")
-      formattedCategory = "ur-efra-og-nedra-helgisogur";
+    if (formattedCategory === "Allt") formattedCategory = "all";
     if (formattedCategory === "Tröll") formattedCategory = "troll";
     if (formattedCategory === "Draugar") formattedCategory = "draugar";
     if (formattedCategory === "Álfar og huldufólk") {

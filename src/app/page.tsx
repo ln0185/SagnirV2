@@ -16,6 +16,7 @@ interface StoriesCategoryArrayInterface {
 }
 
 const categoryDisplayNames: { [key: string]: string } = {
+  all: "Allt",
   troll: "Tröll",
   draugar: "Draugar",
   "alfar-og-huldufolk": "Álfar og huldufólk",
@@ -26,9 +27,7 @@ export default function StoriesPage() {
   const [allStories, setAllStories] = useState<StoriesCategoryArrayInterface[]>(
     []
   );
-  const [clickedCategory, setClickedCategory] = useState<string>(
-    "ur-efra-og-nedra-helgisogur"
-  );
+  const [clickedCategory, setClickedCategory] = useState<string>("all");
   const [visibleStories, setVisibleStories] = useState<number>(6);
 
   useEffect(() => {
@@ -54,11 +53,9 @@ export default function StoriesPage() {
     ) || [];
 
   const selectedCategory =
-    clickedCategory === "ur-efra-og-nedra-helgisogur"
+    clickedCategory === "all"
       ? allStories
       : allStories.find((item) => item.category === clickedCategory);
-
-  console.log(allStories);
 
   const selectedStories =
     selectedCategory && "stories" in selectedCategory
@@ -80,6 +77,7 @@ export default function StoriesPage() {
       const storyObj: StoryInterface = selectedStories as StoryInterface;
       formattedStories = Object.entries(storyObj.stories).reduce(
         (acc, [key, value]) => {
+          acc.category = storyObj.category;
           acc[key] = value;
           return acc;
         },
@@ -98,7 +96,7 @@ export default function StoriesPage() {
       acc[key] = formattedStories[key];
       return acc;
     }, {} as Record<string, string>);
-
+  console.log(formattedStories);
   return (
     <div className="z-10 bg-sagnir-100 pb-8">
       <StoriesHeader />

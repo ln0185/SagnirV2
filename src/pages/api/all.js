@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import { load } from "cheerio";
 
 let cachedData = null;
 let cacheExpiration = Date.now();
@@ -10,18 +11,70 @@ export default async function handler(req, res) {
 
   try {
     const [data1, data2, data3, data4] = await Promise.all([
-      fetch("https://thjodsogur.vegur.is/thjodsogur/troll").then((res) =>
-        res.json()
-      ),
-      fetch("https://thjodsogur.vegur.is/thjodsogur/draugar").then((res) =>
-        res.json()
-      ),
-      fetch("https://thjodsogur.vegur.is/thjodsogur/alfar-og-huldufolk").then(
-        (res) => res.json()
-      ),
-      fetch(
-        "https://thjodsogur.vegur.is/thjodsogur/ur-efra-og-nedra-helgisogur"
-      ).then((res) => res.json()),
+      fetch("https://netutgafan.snerpa.is/thjod/troll.htm")
+        .then((res) => res.text())
+        .then((html) => {
+          const json = load(html).extract({
+            category: {
+              selector: "h1",
+            },
+            stories: [
+              {
+                selector: "a",
+              },
+            ],
+          });
+          console.log(json);
+          return json;
+        }),
+      fetch("https://netutgafan.snerpa.is/thjod/draug.htm")
+        .then((res) => res.text())
+        .then((html) => {
+          const json = load(html).extract({
+            category: {
+              selector: "h1",
+            },
+            stories: [
+              {
+                selector: "a",
+              },
+            ],
+          });
+          console.log(json);
+          return json;
+        }),
+      fetch("https://netutgafan.snerpa.is/thjod/alfa.htm")
+        .then((res) => res.text())
+        .then((html) => {
+          const json = load(html).extract({
+            category: {
+              selector: "h1",
+            },
+            stories: [
+              {
+                selector: "a",
+              },
+            ],
+          });
+          console.log(json);
+          return json;
+        }),
+      fetch("https://netutgafan.snerpa.is/thjod/efra.htm")
+        .then((res) => res.text())
+        .then((html) => {
+          const json = load(html).extract({
+            category: {
+              selector: "h1",
+            },
+            stories: [
+              {
+                selector: "a",
+              },
+            ],
+          });
+          console.log(json);
+          return json;
+        }),
     ]);
 
     cachedData = [

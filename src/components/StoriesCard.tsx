@@ -81,23 +81,21 @@ export const StoriesCard = ({
   };
 
   useEffect(() => {
-    if (categoryName === "ur-efra-og-nedra-helgisogur" && data) {
+    if (categoryName === "all" && data) {
       const allStories = Array.isArray(data)
         ? data.flatMap((item) => Object.values(item?.stories.stories).flat())
         : Object.values(data?.stories || {});
       setCategoryStories(allStories);
-    } else if (
-      !Array.isArray(data) &&
-      data.category !== "ur-efra-og-nedra-helgisogur"
-    ) {
+    } else if (!Array.isArray(data) && data.category !== "all") {
       const catStories = Object.values(data?.stories || {});
       setCategoryStories(catStories);
     }
   }, [data, categoryName]);
+  console.log(data);
 
   const handleStoryClick = (story: string, category: string) => {
     const categoryNavigations: Record<string, string> = {
-      Allt: "ur-efra-og-nedra-helgisogur",
+      Allt: category,
       Tröll: "troll",
       Draugar: "draugar",
       "Álfar og huldufólk": "alfar-og-huldufolk",
