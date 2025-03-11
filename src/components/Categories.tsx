@@ -30,7 +30,7 @@ export const Categories = ({ data, setClickedCategory }: CategoriesType) => {
   return (
     <div className="flex flex-row bg-sagnir-100 text-sagnir-200 text-lg">
       <ul className="flex flex-row gap-8 justify-between overflow-x-scroll md:w-full md:text-2xl py-4 px-4 md:overflow-x-hidden">
-        {data.length > 0 && (
+        {/*    {data.length > 0 && (
           <li
             onClick={(e) => handleCategory((e.target as HTMLElement).innerText)}
             className={`pl-2 cursor-pointer ${
@@ -41,7 +41,7 @@ export const Categories = ({ data, setClickedCategory }: CategoriesType) => {
           >
             Allt
           </li>
-        )}
+        )} */}
         {data.map((item) => (
           <li
             onClick={() => handleCategory(item)}

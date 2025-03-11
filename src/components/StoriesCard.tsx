@@ -8,8 +8,8 @@ import photo4 from "../../public/resources/MYND3.png";
 import photo5 from "../../public/resources/MYND2.png";
 import photo6 from "../../public/resources/MYND1.png";
 import photo7 from "../../public/resources/ghosts.png";
-import photo8 from "../../public/resources/hidden people.svg";
-import photo9 from "../../public/resources/hidden people 2.svg";
+import photo8 from "../../public/resources/hidden people.png";
+import photo9 from "../../public/resources/hidden people 2.png";
 import photo10 from "../../public/resources/MYND5.png";
 import photo11 from "../../public/resources/gillitrut.png";
 import { useMediaQuery } from "../app/hooks/useMediaQuery";
@@ -95,11 +95,11 @@ export const StoriesCard = ({
 
   const handleStoryClick = (story: string, category: string) => {
     const categoryNavigations: Record<string, string> = {
-      Allt: category,
+      Allt: "all",
       Tröll: "troll",
       Draugar: "draugar",
-      "Álfar og huldufólk": "alfar-og-huldufolk",
-      Helgisögur: "ur-efra-og-nedra-helgisogur",
+      "Álfar og Huldufólk": "alfa",
+      Helgisögur: "efra",
     };
 
     const storySlug = storyNavigations[story] || story;
@@ -123,7 +123,10 @@ export const StoriesCard = ({
         const photo = shuffledPhotos[index % shuffledPhotos.length] || photo1;
 
         return (
-          <figure key={index} className="flex flex-col items-center w-full">
+          <figure
+            key={index}
+            className="flex flex-col items-center w-full mx-1"
+          >
             <header className="relative w-full">
               <Image
                 src={photo}

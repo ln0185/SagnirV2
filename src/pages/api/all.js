@@ -78,6 +78,18 @@ export default async function handler(req, res) {
     ]);
 
     cachedData = [
+      {
+        category: "all",
+        stories: {
+          category: "all",
+          stories: [
+            ...data1.stories,
+            ...data2.stories,
+            ...data3.stories,
+            ...data4.stories,
+          ],
+        },
+      },
       { category: "troll", stories: data1 },
       { category: "draugar", stories: data2 },
       { category: "alfar-og-huldufolk", stories: data3 },
