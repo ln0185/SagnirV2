@@ -16,7 +16,7 @@ export const Categories = ({ data, setClickedCategory }: CategoriesType) => {
     if (formattedCategory === "Allt") formattedCategory = "all";
     if (formattedCategory === "Tröll") formattedCategory = "troll";
     if (formattedCategory === "Draugar") formattedCategory = "draugar";
-    if (formattedCategory === "Álfar og huldufólk") {
+    if (formattedCategory === "Álfar og Huldufólk") {
       formattedCategory = "alfar-og-huldufolk";
     }
     if (formattedCategory === "Helgisögur") {

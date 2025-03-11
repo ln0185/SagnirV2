@@ -125,49 +125,49 @@ const Map = () => {
 
   function handleStoryClick(item: string, category: string) {
     if (category === "Huldufólk") {
-      category = "alfar-og-huldufolk";
+      category = "alfa";
     }
     if (category === "Helgisögur") {
-      category = "ur-efra-og-nedra-helgisogur";
+      category = "efra";
     }
     if (category === "Draugar") {
-      category = "draugar";
+      category = "draug";
     }
     if (category === "Tröll") {
       category = "troll";
     }
     if (item === "Geirfuglasker") {
-      item = "alfkonan-i-geirfuglaskeri";
+      item = "geirfugl";
     }
     if (item === "Loðmundarfjörður") {
-      item = "alfafolkid-i-lodmundarfirdi";
+      item = "a-lodmfj";
     }
     if (item === "Melstaðarkirkja") {
-      item = "jonas-a-melstad";
+      item = "jonas";
     }
     if (item === "Skaftafell") {
       item = "einar-sk";
     }
     if (item === "Jórukleif") {
-      item = "jora-i-jorukleif";
+      item = "jora";
     }
     if (item === "Eyvindarmúli") {
-      item = "gudmundur-a-eyvindarmula";
+      item = "gudm-eyv";
     }
     if (item === "Rafnkelsstaðir") {
-      item = "bergthor-og-flugan";
+      item = "flugan";
     }
     if (item === "Snjóholt") {
-      item = "eida-sezelia";
+      item = "setta2";
     }
     if (item === "Reynisstaðarkirkja") {
-      item = "reynistadabraedur";
+      item = "reynis";
     }
     if (item === "Húnavatnssýsla") {
-      item = "satan-vitjar-nafns";
+      item = "sat-nafn";
     }
     if (item === "Hruni") {
-      item = "dansinn-i-hruna";
+      item = "hruna";
     }
     router.push(`/stories/${category}/${item}`);
   }

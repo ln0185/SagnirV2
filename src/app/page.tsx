@@ -19,7 +19,7 @@ const categoryDisplayNames: { [key: string]: string } = {
   all: "Allt",
   troll: "Tröll",
   draugar: "Draugar",
-  "alfar-og-huldufolk": "Álfar og huldufólk",
+  "alfar-og-huldufolk": "Álfar og Huldufólk",
   "ur-efra-og-nedra-helgisogur": "Helgisögur",
 };
 
