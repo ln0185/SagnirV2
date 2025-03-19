@@ -24,32 +24,28 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 };
 
 type StoriesCardType = {
-  data:
-    | {
-        category: string;
-        stories: string[] | Record<string, string>;
-      }
-    | { stories: { stories: Record<string, string> } }[];
+  data: {
+    category: string;
+    stories: string[];
+  };
+
   categoryName: string;
-  visibleStories?: number;
+  links: string[];
 };
 
-const formatTitle = (title: string) => {
+/* const formatTitle = (title: string) => {
   return title
     .replace(/-/g, " ")
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(" ");
-};
+}; */
 
-export const StoriesCard = ({
-  data,
-  categoryName,
-  visibleStories,
-}: StoriesCardType) => {
+export const StoriesCard = ({ data, categoryName, links }: StoriesCardType) => {
   const [categoryStories, setCategoryStories] = useState<string[]>([]);
   const [shuffledPhotos, setShuffledPhotos] = useState<StaticImageData[]>([]);
   const router = useRouter();
+  const visibleStories = categoryStories.length;
 
   const categoryPhotos: Record<string, StaticImageData[]> = {
     troll: [photo1, photo2, photo3, photo4, photo5, photo6],
@@ -82,16 +78,13 @@ export const StoriesCard = ({
 
   useEffect(() => {
     if (categoryName === "all" && data) {
-      const allStories = Array.isArray(data)
-        ? data.flatMap((item) => Object.values(item?.stories.stories).flat())
-        : Object.values(data?.stories || {});
-      setCategoryStories(allStories);
+      console.log(links);
+      setCategoryStories(data.stories || []);
     } else if (!Array.isArray(data) && data.category !== "all") {
       const catStories = Object.values(data?.stories || {});
       setCategoryStories(catStories);
     }
   }, [data, categoryName]);
-  console.log(data);
 
   const handleStoryClick = (story: string, category: string) => {
     const categoryNavigations: Record<string, string> = {
@@ -117,30 +110,30 @@ export const StoriesCard = ({
   }
 
   return (
-    <div className="bg-sagnir-100 flex flex-wrap flex-col justify-center w-full gap-4">
+    <div className="bg-sagnir-100 flex flex-wrap flex-col justify-center w-full gap-3">
       {categoryStories.slice(0, visibleStories).map((story, index) => {
-        const title = formatTitle(story?.replace(/[/]/g, "") || "Untitled");
+        const title = story;
         const photo = shuffledPhotos[index % shuffledPhotos.length] || photo1;
 
         return (
           <figure
             key={index}
-            className="flex flex-col items-center w-full mx-1"
+            className="flex flex-col items-center w-full mx-auto"
           >
-            <header className="relative w-full">
+            <header className="relative w-full px-3">
               <Image
                 src={photo}
                 alt={`Story ${title}`}
                 width={800}
                 height={500}
-                quality={isMobile ? 50 : 90}
+                quality={isMobile ? 50 : 95}
                 priority={index === 0}
                 loading={"eager"}
                 className="w-full h-auto rounded-lg"
               />
               <h2
-                className="absolute bottom-2 left-2 text-sagnir-200 font-serifExtra text-2xl md:text-4xl xl:text-5xl px-2 py-1 rounded-md cursor-pointer"
-                onClick={() => handleStoryClick(story, categoryName)}
+                className="absolute bottom-2 left-4 text-sagnir-200 font-serifExtra text-2xl md:text-4xl xl:text-5xl px-2 py-1 rounded-md cursor-pointer"
+                onClick={() => handleStoryClick(links[index], categoryName)}
               >
                 {title}
               </h2>

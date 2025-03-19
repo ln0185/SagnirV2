@@ -23,8 +23,15 @@ export default async function handler(req, res) {
                 selector: "a",
               },
             ],
+            links: [
+              {
+                selector: "a",
+
+                value: "href",
+              },
+            ],
           });
-          console.log(json);
+
           return json;
         }),
       fetch("https://netutgafan.snerpa.is/thjod/draug.htm")
@@ -39,8 +46,15 @@ export default async function handler(req, res) {
                 selector: "a",
               },
             ],
+            links: [
+              {
+                selector: "a",
+
+                value: "href",
+              },
+            ],
           });
-          console.log(json);
+
           return json;
         }),
       fetch("https://netutgafan.snerpa.is/thjod/alfa.htm")
@@ -55,8 +69,15 @@ export default async function handler(req, res) {
                 selector: "a",
               },
             ],
+            links: [
+              {
+                selector: "a",
+
+                value: "href",
+              },
+            ],
           });
-          console.log(json);
+
           return json;
         }),
       fetch("https://netutgafan.snerpa.is/thjod/efra.htm")
@@ -71,8 +92,15 @@ export default async function handler(req, res) {
                 selector: "a",
               },
             ],
+            links: [
+              {
+                selector: "a",
+
+                value: "href",
+              },
+            ],
           });
-          console.log(json);
+
           return json;
         }),
     ]);
@@ -88,6 +116,12 @@ export default async function handler(req, res) {
             ...data3.stories,
             ...data4.stories,
           ],
+          links: [
+            ...data1.links,
+            ...data2.links,
+            ...data3.links,
+            ...data4.links,
+          ],
         },
       },
       { category: "troll", stories: data1 },
@@ -96,6 +130,7 @@ export default async function handler(req, res) {
       { category: "ur-efra-og-nedra-helgisogur", stories: data4 },
     ];
     cacheExpiration = Date.now() + 1000 * 60 * 5;
+    console.log("data1", data1);
     res.status(200).json(cachedData);
   } catch (error) {
     console.log(error);
