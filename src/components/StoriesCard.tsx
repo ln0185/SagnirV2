@@ -105,7 +105,9 @@ export const StoriesCard = ({ data, categoryName, links }: StoriesCardType) => {
   const isMobile = useMediaQuery("(max-width: 768px)");
   if (!categoryStories || categoryStories.length === 0) {
     return (
-      <p className="text-center">No stories available for this category.</p>
+      <p className="text-center text-sagnir-200">
+        No stories available for this category.
+      </p>
     );
   }
 

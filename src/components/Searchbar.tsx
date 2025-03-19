@@ -111,6 +111,7 @@ export const Searchbar: React.FC<SearchbarProps> = ({
           <StoriesCard
             data={{ category: "", stories: searchResult }}
             categoryName={"all"}
+            links={searchResult.map(() => "")}
           />
         ) : (
           <p>No results found</p>
